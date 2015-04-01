@@ -1,0 +1,38 @@
+importFrom("genefilter" , "rowSds")
+importFrom("genefilter" , "rowFtests")
+importFrom("BiocGenerics", "combine")
+importFrom("gplots", "barplot2")
+importFrom("Biobase", "rowMin")
+import("methods")
+import("graphite")
+import("GSEABase")
+
+export(
+	"decompose.gs.ind",
+	"decompose.gs.group",
+	"moa",
+	"box.gs.feature",
+	"mogsa",
+	"pairwise.rv",
+	"prepGraphite",
+	"prepMsigDB",
+	"prepSupMoa",
+	"plotGS",
+	"sup.moa",
+	"wsvd",
+	"annotate.gs",
+	"GIS",
+	"matpower",
+	"getmgsa"
+)
+
+exportMethods(
+    "plot",
+    "combine"
+)
+
+exportClasses(
+    "mgsa",
+    "moa",
+    "moa.sup" 
+)

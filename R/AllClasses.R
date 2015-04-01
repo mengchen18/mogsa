@@ -1,0 +1,47 @@
+setClass(Class = "moa", 
+         slots = c("eig","tau", "partial.eig", "eig.vec",
+                   "loading", "fac.scr", "partial.fs",
+                   "ctr.obs", "ctr.var", "ctr.tab", "RV",
+                   "data", "tab.dim", "call", "w.row"), 
+         prototype = prototype(eig="numeric", 
+                               tau = c("logical", "numeric"),
+                               partial.eig = c("logical", "data.frame"),
+                               eig.vec = "data.frame",
+                               fac.scr = "data.frame",
+                               loading = "data.frame",
+                               partial.fs = c("logical", "data.frame"),
+                               ctr.obs = c("logical", "data.frame"),
+                               ctr.var = c("logical", "data.frame"),
+                               ctr.tab = c("logical", "data.frame"),
+                               RV = c("logical", "matrix"),
+                               w.row = c(NULL, "list"),
+                               data = "list",
+                               tab.dim = "data.frame",
+                               call = "call"), 
+         sealed = TRUE, 
+         package = "mogsa")
+         
+
+setClass(Class="moa.sup",
+  slots = c("sup", "coord.sep", "coord.comb",
+    "score", "score.data", "score.pc", "score.sep", "p.val"),
+  prototype = prototype(
+    sup = c("list", "data.frame", "matrix"),
+    coord.sep = "list",
+    coord.comb = "matrix",
+    score = "matrix",
+    score.data = "list",
+    score.pc = "list",
+    score.sep = "list",
+    p.val = "matrix"),
+  sealed=TRUE,
+  package = "mogsa")
+
+setClass(Class="mgsa",
+  slots = c("call", "moa", "sup"),
+  prototype = prototype(
+    call = "character",
+    moa = "moa",
+    sup = "moa.sup"),
+  sealed=TRUE,
+  package = "mogsa")
