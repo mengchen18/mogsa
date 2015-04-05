@@ -11,7 +11,7 @@ prepMsigDB <- function(file) {
 prepGraphite <- function(db, id = c("entrez", "symbol")) {
   if (id %in% "symbol") {
     cat("converting identifiers!")
-    db <- lapply(db, convertIdentifiers, type="symbol")
+    db <- lapply(db, convertIdentifiers, to="symbol")
     cat("converting identifiers done!")
     gs <- lapply(db, nodes)
   } else if (id %in% "entrez") {
@@ -21,7 +21,7 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
       gs <- lapply(gs, function(x) gsub("EntrezGene:", "", x))
     } else if (database %in% c("reactome", "nci")) {
       cat("converting identifiers!")
-      db <- lapply(db, convertIdentifiers, type="entrez")
+      db <- lapply(db, convertIdentifiers, to="entrez")
       cat("converting identifiers done!")
       gs <- lapply(db, nodes)
     } else 
