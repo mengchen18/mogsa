@@ -1,1 +1,5 @@
 First release
+
+version: 0.99.4
+date: 2015-04-06
+update prepGraphite function according to the update of Graphite pacakge

@@ -9,23 +9,34 @@ prepMsigDB <- function(file) {
 }
 
 prepGraphite <- function(db, id = c("entrez", "symbol")) {
+
+  if (!inherits(db, c("PathwayList")))
+    stop("db should be an object of class either 'PathwayList'.")
+
   if (id %in% "symbol") {
-    cat("converting identifiers!")
+
+    cat("converting identifiers!\n")
     db <- lapply(db, convertIdentifiers, to="symbol")
-    cat("converting identifiers done!")
+    cat("converting identifiers done!\n")
     gs <- lapply(db, nodes)
+  
   } else if (id %in% "entrez") {
-    database <- slot(db[[1]], name="database")
-    if (database %in% c("biocarta", "kegg")) {
+
+    database <- slot(db, name="name")
+    if (tolower(database) %in% c("biocarta", "kegg")) {
+    
       gs <- lapply(db, nodes)
       gs <- lapply(gs, function(x) gsub("EntrezGene:", "", x))
-    } else if (database %in% c("reactome", "nci")) {
+    
+    } else if (tolower(database) %in% c("humancyc", "panther", "reactome", "nci")) {
+    
       cat("converting identifiers!")
       db <- lapply(db, convertIdentifiers, to="entrez")
-      cat("converting identifiers done!")
+      cat("converting identifiers done!\n")
       gs <- lapply(db, nodes)
-    } else 
-      stop("unknown database")
+    
+    } 
+
   } else
     stop("unknow identifiers selected")
   return (gs)

@@ -12,7 +12,7 @@
 }
 \arguments{
   \item{db}{
-    The database to be used, options include: biocarta, nci, kegg or reactome.
+    The database to be used, an object of class either 'PathwayList' create by "pathways" function.
 }
   \item{id}{
     Which identifier for output, either "entrez" or "symbol".
@@ -36,10 +36,7 @@
 }
 \examples{
   library(graphite)
-  keggdb <- prepGraphite(db=kegg, id="entrez")
-  # or
-  # keggdb <- prepGraphite(db=kegg, id="symbol")
-  # keggdb <- prepGraphite(db=c(kegg, nci), id="symbol")
+  keggdb <- prepGraphite(db = pathways("hsapiens", "kegg")[1:3], id = "entrez")
 }
 
 \keyword{ pahtways }

@@ -267,7 +267,7 @@ there are two methods to create gene set list. The first one is generating gene 
 list from package \Biocpkg{graphite} \cite{graphite} using function \Rfunction{prepGraphite}. 
 <<prepGraphite>>=
 library(graphite)
-keggdb <- prepGraphite(db=kegg[1:50], id="symbol")
+keggdb <- prepGraphite(db = pathways("hsapiens", "kegg")[1:50], id = "symbol")
 keggdb[1:2]
 @ 
 
