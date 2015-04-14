@@ -1,5 +1,6 @@
-First release
+CHANGES IN VERSION 0.99.4
+-------------------------
 
-version: 0.99.4
-date: 2015-04-06
-update prepGraphite function according to the update of Graphite pacakge
+NEW FEATURES
+
+    o update prepGraphite function according to the update of Graphite pacakge
