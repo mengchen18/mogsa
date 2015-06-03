@@ -13,7 +13,7 @@
   \item{\code{signature(x = "moa", y = "missing")}}{
 	 plot moa object
   }
-Argument "value" sould be one of "eig", "tau", "obs", "var" and "RV"\\
+    Argument "value" sould be one of "eig", "tau", "obs", "var" and "RV"\\
     
     if value = "eig", the eigenvalue would be plotted as scree plot. The
     following arguments could be set:\\

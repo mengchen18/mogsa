@@ -1,7 +1,7 @@
 Package: mogsa
 Type: Package
 Title: Multiple omics data integartion and gene set analysis
-Version: 1.1.0
+Version: 1.1.1
 Date: 2015-04-06
 Author: Chen Meng
 Maintainer: Chen Meng <mengchen18@gmail.com>
@@ -10,7 +10,7 @@ Description: This package provide a method for doing gene set analysis
 License: GPL-2
 Depends: R (>= 3.2.0)
 Imports: methods, graphite, genefilter, BiocGenerics, gplots, GSEABase,
-        Biobase
+        Biobase, parallel, corpcor, svd, cluster
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr
 biocViews: GeneExpression, PrincipalComponent, StatisticalMethod,

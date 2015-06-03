@@ -7,6 +7,11 @@ import("methods")
 import("graphite")
 import("GSEABase")
 
+importFrom("corpcor", "fast.svd")
+importFrom("svd", "propack.svd")
+importFrom("parallel", "mclapply")
+importFrom("cluster", "clusGap", "maxSE")
+
 export(
 	"decompose.gs.ind",
 	"decompose.gs.group",
@@ -23,7 +28,15 @@ export(
 	"annotate.gs",
 	"GIS",
 	"matpower",
-	"getmgsa"
+	"getmgsa",
+	
+	"bootMbpca",
+	"distMoa",
+	"moGap",
+	"softK",
+	"mbpca",
+	"moaScore",
+	"moaCoef"
 )
 
 exportMethods(

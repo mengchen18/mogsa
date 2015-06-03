@@ -83,6 +83,7 @@ setMethod("plot", signature=c("moa", "missing"), function(x, value, type=1,
   
 })
 
+
 # ==============================================================================
 # ==                                                                          ==
 # ==                     plot.obs                                             ==
@@ -282,10 +283,5 @@ setMethod("plot", signature=c("moa", "missing"), function(x, value, type=1,
 .heatmap.rv <- function(moa, ...) {
   heatmap(moa@RV, symm=TRUE, ...)
 }
-
-
-
-
-
 
 
