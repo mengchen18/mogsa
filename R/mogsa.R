@@ -23,13 +23,13 @@ mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, stati
     } 
   } else if (inherits(x, "moa")) {
     if (!is.null(proc.row))
-      warning("x is an object of \"moa\", proc.row is not used")
+      cat("x is an object of \"moa\", proc.row is not used")
     if (!is.null(w.data))
-      warning("x is an object of \"moa\", w.data is not used")
+      cat("x is an object of \"moa\", w.data is not used")
     if (!is.null(w.row))
-      warning("x is an object of \"moa\", w.row is not used")
+      cat("x is an object of \"moa\", w.row is not used")
     if (!is.null(statis))
-      warning("x is an object of \"moa\", statis is not used")
+      cat("x is an object of \"moa\", statis is not used")
     data <- x@data
     r <- x
 
@@ -38,7 +38,7 @@ mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, stati
       supr <- sup.moa (X=r, sup=sup, nf=nf)
     } else if (inherits(sup, "moa.sup")) {
       if (!is.null(nf))
-        warning("x is an object of \"moa\" and sup is an object of class \"sup.moa\", nf is not used")
+        cat("x is an object of \"moa\" and sup is an object of class \"sup.moa\", nf is not used")
       supr <- sup
     }
   }
