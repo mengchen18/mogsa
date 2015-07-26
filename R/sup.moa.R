@@ -25,7 +25,7 @@ sup.moa <- function(X, sup, nf=2) {
   
 
   GSCoordinate_sep <- mapply(SIMPLIFY=FALSE, function(load, sup) {
-    a <- t(sup) %*% as.matrix(load[, 1:nf])
+    a <- t(sup) %*% as.matrix(load[, 1:nf, drop=FALSE])
     colnames(a) <- paste("PC", 1:nf, sep="")
     return(a)
   }, load=load, sup=normsup)
@@ -86,9 +86,9 @@ sup.moa <- function(X, sup, nf=2) {
     2 * rowMin(cbind(pp, 1-pp))
   }
   # reconstuct matrix using nf PCs
-  U <- as.matrix(X@loading[, 1:nf]) 
-  D <- diag(sqrt(X@eig[1:nf]))
-  V <- as.matrix(X@eig.vec[, 1:nf])
+  U <- as.matrix(X@loading[, 1:nf, drop=FALSE]) 
+  D <- diag(sqrt(X@eig[1:nf]), nrow = nf)
+  V <- as.matrix(X@eig.vec[, 1:nf, drop=FALSE])
   rec <- U %*% D %*% t(V)
   # the number of feature in each GS
   supn <- colSums(sup != 0)

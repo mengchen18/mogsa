@@ -271,7 +271,9 @@ keggdb <- prepGraphite(db = pathways("hsapiens", "kegg")[1:50], id = "symbol")
 keggdb[1:2]
 @ 
 
-The second method is to create a gene set list from "gmt" files, which could be downloaded from MSigDB \cite{msigdb}. 
+The second method is to create a gene set list from "gmt" files, which could be downloaded from MSigDB \cite{msigdb}
+after obtaining a proper license. In our working example, we will work on a toy example from this database containing 
+only three datasets.
 <<prepMsigDB>>=
 dir <- system.file(package = "mogsa")
 preGS <- prepMsigDB(file=paste(dir, "/extdata/example_msigdb_data.gmt.gz", sep = ""))

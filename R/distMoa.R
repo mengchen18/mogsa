@@ -1,5 +1,7 @@
 distMoa <-
-function(x, nf=Inf, tol=1e-5, method = "euclidean", diag = FALSE, upper = FALSE, p = 2) {
+function(x, nf=NA, tol=1e-5, method = "euclidean", diag = FALSE, upper = FALSE, p = 2) {
+  if (is.na(nf))
+    nf <- Inf
   if (inherits(x, "moa")) {
     nfi <- x@eig > tol
     x <- moaScore(x)

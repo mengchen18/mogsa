@@ -9,7 +9,7 @@
   an object of class \code{\link{moa-class}}.
 }
 \usage{
-distMoa(x, nf = Inf, tol = 1e-05, method = "euclidean", 
+distMoa(x, nf = NA, tol = 1e-05, method = "euclidean", 
   diag = FALSE, upper = FALSE, p = 2)
 }
 
@@ -18,7 +18,7 @@ distMoa(x, nf = Inf, tol = 1e-05, method = "euclidean",
   An object of class \code{\link{moa-class}}.
 }
   \item{nf}{
-  Integer; the number of component used to calculate the distance
+  Integer; the number of component used to calculate the distance. Default setting (NA) will keep all the axes.
 }
   \item{tol}{
   Numerical; the tolerance of component with low variance.

@@ -11,7 +11,7 @@ function(data, x, call) {
   eig.vec <- sweep(x$t, 2, sqrt(eig), "/")
   
   rn <- unlist(lapply(x$pb, rownames))
-  rn <- paste(rn, rep(names(data), tab.dim[2, ]), sep = "_")
+  rn <- paste(rn, rep(names(data), tab.dim[1, ]), sep = "_")
   loading <- do.call("rbind", x$pb)
   rownames(loading) <- rn
   
@@ -35,7 +35,7 @@ function(data, x, call) {
              partial.fs = partial.fs,
              ctr.obs = NA,
              ctr.var = NA,
-             ctr.tab = NA,
+             ctr.tab = sweep(partial.eig, 2, eig, "/"),
              RV= RV,
              w.row = NA,
              data = data,

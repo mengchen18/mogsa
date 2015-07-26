@@ -14,6 +14,8 @@ function(moa, mc.cores=1, B = 100, replace=TRUE, resample=c("sample", "gene", "t
     maxiter <- call$maxiter
     cat(paste("maxiter is set to ", maxiter, ".\n", sep = ""))
   }  
+  if (is.null(call$k))
+    call$k <- "all"
   if (call$k != "all") {
     call$k <- "all"
     call$verbose <- FALSE
