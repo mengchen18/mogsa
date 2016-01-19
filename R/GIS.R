@@ -1,4 +1,4 @@
-GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, ff=NA) {
+GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, ff=NA, cor=FALSE) {
   
   if (!inherits(x, "mgsa"))
     stop("x should be an object of class mgsa!")
@@ -20,41 +20,49 @@ GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, 
     nf <- length(x@sup@score.pc)
   if (is.na(barcol[1]))
     barcol <- 1:length(exprs)
-
-  x@sup@coord.comb[geneSet, ]
-  scor <- x@sup@score[geneSet, ]
   
-  if (!Fvalue) {
-    sdscor <- sd(scor)
-  } else if (Fvalue & length(ff)==length(scor)) {
-    sdscor <- fvalue(scor, as.factor(ff))
-  } else 
-    stop("if Fvalue is TRUE, ff need to be defined!")
-  
+  scor <- x@sup@score[geneSet, , drop=FALSE]
   gsi <- lapply(x@sup@sup, function(x) x[, geneSet])
   coln <- sapply(gsi, function(x) sum(x!=0))
   col_code <- rep(barcol, coln)
   gsi <- unlist(gsi)
   genes_idx <- which(gsi != 0)
-  gsimat <- sapply(genes_idx, function(i, gsi) {
-    gsi[i] <- 0
-    return(gsi)}, gsi=gsi)
-  coor <- t(gsimat) %*% as.matrix(x@moa@loading)[, 1:nf]
-  scor_rm <- as.matrix(x@moa@fac.scr[, 1:nf]) %*% t(coor)
   
-  if (!Fvalue) {
-    sdscor_rm <- apply(scor_rm, 2, sd)
-  } else if (Fvalue & length(ff)==length(scor)) {
-    sdscor_rm <- rowFtests(t(scor_rm), fac=as.factor(ff))[, "statistic"]
-  }
+  if (cor) {
+    if (Fvalue)
+      warning("cor = TRUE, Fvalue is ignored.")
+    xmat <- as.matrix(x@moa@fac.scr[, 1:nf]) %*% t(as.matrix(x@moa@loading)[, 1:nf])
+    ef <- cor(t(scor), xmat[, genes_idx], )
+    cn <- colnames(ef)
+    ef <- c(ef)
+    names(ef) <- cn
+  } else {
+    if (!Fvalue) {
+      sdscor <- sd(scor)
+    } else if (Fvalue & length(ff)==length(scor)) {
+      sdscor <- fvalue(scor, as.factor(ff))
+    } else 
+      stop("if Fvalue is TRUE, ff need to be defined!")
+    gsimat <- sapply(genes_idx, function(i, gsi) {
+      gsi[i] <- 0
+      return(gsi)}, gsi=gsi)
+    coor <- t(gsimat) %*% as.matrix(x@moa@loading)[, 1:nf]
+    scor_rm <- as.matrix(x@moa@fac.scr[, 1:nf]) %*% t(coor)
+    
+    if (!Fvalue) {
+      sdscor_rm <- apply(scor_rm, 2, sd)
+    } else if (Fvalue & length(ff)==length(scor)) {
+      sdscor_rm <- rowFtests(t(scor_rm), fac=as.factor(ff))[, "statistic"]
+    }
+    names(sdscor_rm) <- rn[genes_idx]
+    ef <- -log2(sdscor_rm/sdscor)
+  }  
   
-  names(sdscor_rm) <- rn[genes_idx]
-  
-  ef <- -log2(sdscor_rm/sdscor)
   ef <- ef/max(ef)
   oef <- order(ef, decreasing=FALSE)
   ef <- ef[oef]
   ef <- rev(ef)
+  
   if (plot) {
     barplot(rev(ef), horiz=TRUE, col=col_code[oef], border=col_code[oef], names.arg = NA)
     legend(x="bottomright", col=barcol, legend=names(coln), pch=15)
@@ -85,5 +93,4 @@ annotate.gs <- function(mgsa, gs) {
   df <- df[order(df$stat, decreasing=TRUE), ]
   return(df)
 }
-
 

@@ -27,6 +27,7 @@
       the number of columns),
     \code{center_ssqNm1} - center and scale (sum of squred values equals 
       the number of columns - 1)
+    MFA corresponds to "proc.row=center_ssq1" and 'w.data="lambda1"'
   }
   \item{w.data}{
     The weights of each separate dataset, should be one of 

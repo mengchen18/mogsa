@@ -15,9 +15,10 @@ BiocStyle::latex(bibstyle="unsrt")
 
 \title{\Biocpkg{mogsa}: gene set analysis on multiple omics data}
 \author{Chen Meng}
-\date{Modified: March 17, 2015.  Compiled: \today.}
+\date{Modified: January 19, 2016.  Compiled: \today.}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 <<include=FALSE>>=
 library(knitr)
@@ -196,7 +197,7 @@ the longest or shortest bars.
 
 Next, in order to know the most influential genes in this gene set. We call the function \Rfunction{GIS}:
 <<decompGis1_gis, fig.cap="The gene influential score (GIS) plot. the GIS are represented as bars and the original data where the gene is from is distingished by different colors.">>=
-gis1 <- GIS(mgsa1, gs1) # gene influential score
+gis1 <- GIS(mgsa1, gs1, barcol = gray.colors(4)) # gene influential score
 head(gis1) # print top 6 influencers
 @
 In figure 5, the bars represent the gene influential scores for genes. Genes from different platforms are 
@@ -210,7 +211,7 @@ In the next example, we use the same methods to explore the "PUJANA ATM PCC NETW
 # the section gene set
 gs2 <- "PUJANA_ATM_PCC_NETWORK"
 decompose.gs.group(mgsa1, gs2, group = cancerType, x.legend = "topright")
-gis2 <- GIS(mgsa1, "PUJANA_ATM_PCC_NETWORK", topN = 6)
+gis2 <- GIS(mgsa1, "PUJANA_ATM_PCC_NETWORK", topN = 6, barcol = gray.colors(4))
 gis2
 @
 Figure 6 shows that the the leukemia cell lines have highest GSSs for this gene set. And the HGU133 and HGU95 

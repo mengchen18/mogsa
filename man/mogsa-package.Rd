@@ -3,7 +3,7 @@
 % \alias{mogsa}
 \docType{package}
 \title{
-Multiple omics gene set analysis
+Multiple omics clustering and gene set analysis
 }
 \description{
 Modern "omics" technologies enable quantitative monitoring of the abundance of various biological molecules 
@@ -17,8 +17,8 @@ observations/samples.
 \tabular{ll}{
 Package: \tab mogsa\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2014-06-07\cr
+Version: \tab 1.3.1\cr
+Date: \tab 2016-01-19\cr
 License: \tab GPL-2\cr
 Depends: \tab methods\cr
 }
@@ -29,7 +29,11 @@ The main function in the package is "mogsa", see the function help manu for more
 	Maintainer: Chen Meng <chen.meng@tum.de>
 }
 \references{
-	TBA
+	Chen Meng, Dominic Helm, Martin Frejno, and Bernhard Kuster. 
+  moCluster: Identifying Joint Patterns Across Multiple Omics Data
+  Sets. Journal of Proteome Research 2016.
+
+
 }
 
 \examples{

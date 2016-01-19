@@ -1,7 +1,9 @@
 nipalsSoftK <-
 function(x, maxiter, k) {
-  # NIPALS
-  # t <- x[[1]][, 1]
+  
+  if (length(k) < length(x))
+    k <- rep(k, length.out = length(x))
+  
   t <- svd(do.call("cbind", x))$u[, 1]
   
   regproj <- function(xb, t, k) { 
@@ -14,7 +16,7 @@ function(x, maxiter, k) {
   
   for (i in 1:maxiter) {
     told <- t
-    rp <- lapply(x, regproj, t, k)
+    rp <- mapply(SIMPLIFY = FALSE, function(x, y) regproj(x, t, y), x=x, y=k)
     tm <- sapply(rp, "[[", "tb")
     w <- t(tm) %*% t / c(t(t) %*% t)
     w <- w/sqrt(sum(w^2))
@@ -23,7 +25,7 @@ function(x, maxiter, k) {
     if (all.equal(c(t), c(told))[1] == TRUE)
       break
     if (i == maxiter)
-      cat("  Note: maximum number of iteration reached, algrithm may not converge.\n")
+      cat("  Note: maximum number of iterations was reached, algrithm may not converge.\n")
   }
   
   res <- list(tb = lapply(rp, "[[", "tb"),

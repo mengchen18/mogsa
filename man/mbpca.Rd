@@ -32,7 +32,8 @@ mbpca(x, ncomp, method, k = "all", center = TRUE, scale = FALSE,
 }
   \item{k}{
   The absolute number (if k >= 1) or the proportion (if 0<k<1) of non-zero coefficients 
-  for the variable loading vectors.
+  for the variable loading vectors. It could be a single value or a vector has the same length as x so 
+  the sparsity of individual matrix could be different.
 }
   \item{center}{
   Logical; if the variables should be centered

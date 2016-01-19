@@ -9,7 +9,7 @@ function(x, ncomp, method, k="all", center=TRUE,
   call <- match.call()
   x <- processOpt(x, center=center, scale=scale, option = option)
   nc <- sapply(x, ncol)
-  keepAll <- k == 'all' | k > min(nc)
+  keepAll <- k[1] == 'all'
   prddata <- lapply(x, t)
   ssl <- match.arg(svd.solver)
   svdf <- switch(ssl, 
@@ -21,8 +21,11 @@ function(x, ncomp, method, k="all", center=TRUE,
     if (verbose)
       cat(paste("calculating component ", i, " ...\n", sep = ""))
     if (keepAll)
-      r <- msvd(x, svd.sol=svdf) else
+      r <- msvd(x, svd.sol=svdf) else {
+        if (length(k) < length(x))
+          k <- rep(k, length.out = length(x))
         r <- nipalsSoftK(x, maxiter=maxiter, k=k)
+      }
     x <- deflat(x, r$t, r$tb, r$pb, method)
     if (i == 1)
       res <- r else {

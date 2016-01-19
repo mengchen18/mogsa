@@ -8,7 +8,7 @@
 	Using a leave-one-out procedure (See detail).
 }
 \usage{
-	GIS(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, ff=NA)
+	GIS(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, ff=NA, cor=FALSE)
 }
 
 \arguments{
@@ -42,6 +42,10 @@
   \item{ff}{
 	The vector indicates the group of columns for calculating the F-ratio when
 	Fvalue=TRUE. 
+  }
+  \item{cor}{
+	A logical indicates whether use correlation between reconstructed expression with GSS. 
+	This is faster than the standard GIS.
   }
 }
 \details{

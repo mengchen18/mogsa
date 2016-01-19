@@ -19,7 +19,9 @@ nipalsSoftK(x, maxiter, k)
   # of maximum interation the algorithm can run
 }
   \item{k}{
-  The number (>=1) or proportion (<1) of variables want to keep
+  The number (>=1) or proportion (<1) of variables want to keep. 
+  It could be a single value or a vector has the same length as x so 
+  the sparsity of individual matrix could be different.
 }
 }
 
