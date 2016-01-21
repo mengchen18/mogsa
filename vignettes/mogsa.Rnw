@@ -18,7 +18,7 @@ BiocStyle::latex(bibstyle="unsrt")
 \date{Modified: January 19, 2016.  Compiled: \today.}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+% \SweaveOpts{concordance=TRUE}
 
 <<include=FALSE>>=
 library(knitr)
