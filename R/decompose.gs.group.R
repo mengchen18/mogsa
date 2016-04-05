@@ -1,5 +1,6 @@
 decompose.gs.group <-
-function(x, gs, group, decomp = "data", nf=2, x.legend="bottomleft", y.legend=NULL, plot=TRUE, ...) {
+function(x, gs, group, decomp = "data", nf=2, x.legend="bottomleft", y.legend=NULL, plot=TRUE, 
+  main=NULL, ...) {
   
   # function only used inside function
   sedata <- function(ob) {
@@ -48,7 +49,7 @@ function(x, gs, group, decomp = "data", nf=2, x.legend="bottomleft", y.legend=NU
     ci.u <- s+1.96*sed
     col <- gray.colors(nrow(s))
     u <- barplot2(s, beside = TRUE, plot.ci = TRUE, ci.l = ci.l, ci.u = ci.u, col=col, 
-      ylab= "decomposed gene set score", main = paste(decomp, "-wise decomposed gene set scores", sep=""))
+      ylab = paste(decomp, "-wise decomposed gene set scores", sep=""), main=main)
     legend(x = x.legend, y = y.legend, legend = rownames(s), col=col, pch=15)
   }
   return(invisible(list(decomp.mean=s, decomp.se=sed)))
