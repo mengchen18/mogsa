@@ -24,10 +24,13 @@ function(x, gs, group, decomp = "data", nf=2, x.legend="bottomleft", y.legend=NU
     x <- x@sup
   scl <- lapply(x@score.sep, function (x) x[1:nf])
   
-  if (is.null(names(group)))
-    names(group) <- paste("V", 1:length(group), sep = "")
-  
-  cls <- split(1:length(group), group)
+  if (is.list(group))
+    cls <- group else {
+      if (is.null(names(group)))
+        names(group) <- paste("V", 1:length(group), sep = "")
+        cls <- split(1:length(group), group)
+    }
+    
   gsm <- lapply(cls, function(ob) 
     decompose.gs.ind(x = x, plot = FALSE, gs=gs, obs = ob, nf = nf))
   
