@@ -53,7 +53,7 @@ moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, stat
     stop ("Table name or Colnames or Rownames are missing in all/one data!")
   nCols <- sapply(data, ncol)
   if (length(unique(nCols)) != 1) 
-    stop ("Unequal number of columns! (Columns need to be matched!")
+    stop ("Unequal number of columns! Columns need to be matched.")
   
   # preprocessing of row 
   nObs <- unique(nCols)
@@ -63,17 +63,16 @@ moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, stat
   # create weight
   wObs <- rep(1/nObs, nObs)
   wD <- .w.data(data, method = w.data, statis=statis)
-
-  d1 <- .concateTabs(wD$x)
-  
   wData <- rep(sqrt(wD$w), nRows)
   if (!is.null(w.row))
     wData <- wData * sqrt(wr)
 
+  # data concatenation, weighting and decomposition
+  d1 <- .concateTabs(wD$x)
   Xt <- d1$tab * wData / sqrt(nObs)
   sing <- svd(Xt)
   decom <- .read.svd(x=sing, data=wD$x, 
-                      M=rep(1/nObs, nObs), A=wData^2,
+                      M=wObs, A=wData^2,
                       design=rep(names(data), nRows))
 
   decom$data <- kd
@@ -98,6 +97,7 @@ moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, stat
                 ctr.tab = decom$ctr.tab,
                 RV = decom$RV,
                 w.row = decom$alpha,
+                w.data = wData^2,
                 data = decom$data,
                 tab.dim = decom$tab.dim,
                 call = decom$call)

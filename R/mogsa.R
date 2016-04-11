@@ -1,4 +1,4 @@
-mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE) {
+mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL) {
   
   # if sup is NULL .....
   # extract data and moa
@@ -17,7 +17,7 @@ mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, stati
     
     # sup data
     if (inherits(sup, "list")) {
-      supr <- sup.moa (X=r, sup=sup, nf=nf)
+      supr <- sup.moa (X=r, sup=sup, nf=nf, ks.stat=ks.stat, ks.B = ks.B, ks.cores = ks.cores)
     } else if (inherits(sup, "moa.sup")) {
       stop("sup cannot be an object of class moa.sup if x is an object of class list.")
     } 
@@ -35,7 +35,7 @@ mogsa <- function(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, stati
 
     # sup data
     if (inherits(sup, "list")) {
-      supr <- sup.moa (X=r, sup=sup, nf=nf)
+      supr <- sup.moa (X=r, sup=sup, nf=nf, ks.stat=ks.stat, ks.B = ks.B, ks.cores = ks.cores)
     } else if (inherits(sup, "moa.sup")) {
       if (!is.null(nf))
         cat("x is an object of \"moa\" and sup is an object of class \"sup.moa\", nf is not used")

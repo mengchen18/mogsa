@@ -1,7 +1,7 @@
 Package: mogsa
 Type: Package
 Title: Multiple omics data integrative clustering and gene set analysis
-Version: 1.3.2
+Version: 1.4.0
 Date: 2016-04-05
 Author: Chen Meng
 Maintainer: Chen Meng <mengchen18@gmail.com>
@@ -13,6 +13,6 @@ Imports: methods, graphite, genefilter, BiocGenerics, gplots, GSEABase,
         Biobase, parallel, corpcor, svd, cluster
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr
-biocViews: GeneExpression, PrincipalComponent, StatisticalMethod,
+biocViews: GeneExpression, PrincipalComponent, StatisticalMethod, Clustering,
         Software
 NeedsCompilation: no

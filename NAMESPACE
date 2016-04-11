@@ -1,6 +1,7 @@
 importFrom("genefilter" , "rowSds")
 importFrom("genefilter" , "rowFtests")
 importFrom("BiocGenerics", "combine")
+importFrom("BiocGenerics", "boxplot")
 importFrom("gplots", "barplot2")
 importFrom("Biobase", "rowMin")
 import("methods")

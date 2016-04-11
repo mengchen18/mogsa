@@ -11,7 +11,7 @@
 }
 
 \usage{
-  mogsa(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE)
+  mogsa(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
 }
 
 \arguments{
@@ -36,6 +36,17 @@
     \item{statis}{
       A logical indicates if statis algrithm should be used. If x is a object of \code{list}, it is passed \code{moa}
     }
+    \item{ks.stat}{
+      The logical indicates if the p-value should be calculated using K-S statistic (the method used in "ssgsea" in GSVA package). 
+      Default is FALSE, which means using the z-score method. See \code{\link{sup.moa}}.
+    }
+    \item{ks.B}{
+      An integer to indicate the number of bootstrapping samples to calculated the p-value of KS statistic.
+    }
+    \item{ks.cores}{
+      An integer indicate the number of cores to be used in bootstrapping. It is passed to function \code{mclapply} in the 
+      \code{parallel} package.
+    }
 }
 
 \details{
@@ -47,7 +58,9 @@
 }
 
 \references{
-    Not avaiable right now.
+    Preprint: Meng, C., Kuster, B., Peters, B., Culhane, AC., Moghaddas Gholami, A., moGSA: integrative single sample gene-set analysis of multiple omics data. doi: http://dx.doi.org/10.1101/046904
+    Haenzelmann, S., Castelo, R. and Guinney, J. GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14:7, 2013.
+    Barbie, D.A. et al. Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112, 2009.
 }
 
 \author{

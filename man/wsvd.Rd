@@ -55,10 +55,10 @@
 \examples{
     set.seed(56)
     m <- matrix(rnorm(15), 5, 3)
-    wl <- tcrossprod(matrix(rnorm(15), 5, 3))
+    wl <- rnorm(5)
     wr <- runif(3)
     s <- wsvd(X=m, D1=wl, D2=wr)
-    # t(s$u) %*% wl %*% s$u
+    # t(s$u) %*% diag(wl) %*% s$u
     # t(s$v) %*% diag(wr) %*% s$v
     # all.equal(m, as.matrix(s$u) %*% diag(s$d) %*% t(s$v))
 }

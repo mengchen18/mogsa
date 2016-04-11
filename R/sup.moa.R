@@ -3,7 +3,8 @@
 #   sup - the supplementary table (nVar * nIndividual)
 #   axes - which axes should be used
 
-sup.moa <- function(X, sup, nf=2) {
+sup.moa <- function(X, sup, nf=2, 
+  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL) {
 
   # sup, nf
   N <- length(sup)
@@ -22,13 +23,12 @@ sup.moa <- function(X, sup, nf=2) {
   #   sweep(x, 2, w, "/")
   # }, w=w)
   normsup <- sup # change here
-  
 
-  GSCoordinate_sep <- mapply(SIMPLIFY=FALSE, function(load, sup) {
-    a <- t(sup) %*% as.matrix(load[, 1:nf, drop=FALSE])
+  GSCoordinate_sep <- mapply(SIMPLIFY=FALSE, function(load, sup, A) {
+    a <- t(sup * A) %*% as.matrix(load[, 1:nf, drop=FALSE])
     colnames(a) <- paste("PC", 1:nf, sep="")
     return(a)
-  }, load=load, sup=normsup)
+  }, load=load, sup=normsup, A = split(X@w.data, names(X@w.data)))
 
   GSCoordinate_comb <- Reduce("+", GSCoordinate_sep)
   
@@ -56,8 +56,18 @@ sup.moa <- function(X, sup, nf=2) {
   contribution_total <- Reduce("+", contribution_dataset) 
 
   csup <- do.call("rbind", sup)
-  pmat <- .signifGS(X=X, sup=csup, score=contribution_total, nf=nf)
-
+  if (!ks.stat) {
+    pmat <- .signifGS(X=X, sup=csup, A = X@w.data, 
+      score=contribution_total, nf=nf)
+    attr(pmat, "method") <- "zscore"
+    } else {
+      if (is.null(ks.cores)) 
+        ks.cores <- getOption("mc.cores", 2L) 
+      cat("running bootstrapping for p values of KS.stat ...\n")
+      pmat <- .ks.pval(X, sup, ks.B=ks.B, nf=nf, mc.cores = ks.cores)
+      attr(pmat, "method") <- "KS.stat"
+    }
+  
   res <- new("moa.sup", 
     sup = sup,
     coord.comb = GSCoordinate_comb,
@@ -72,7 +82,7 @@ sup.moa <- function(X, sup, nf=2) {
 }
 
 
-.signifGS <- function(X, sup, score, nf) {
+.signifGS <- function(X, sup, A, score, nf) {
   
   # define function 
   ff <- function(x, n, score, infinite=FALSE) {
@@ -89,7 +99,7 @@ sup.moa <- function(X, sup, nf=2) {
   U <- as.matrix(X@loading[, 1:nf, drop=FALSE]) 
   D <- diag(sqrt(X@eig[1:nf]), nrow = nf)
   V <- as.matrix(X@eig.vec[, 1:nf, drop=FALSE])
-  rec <- U %*% D %*% t(V)
+  rec <- (U %*% D %*% t(V)) * A
   # the number of feature in each GS
   supn <- colSums(sup != 0)
   # calculate the P value

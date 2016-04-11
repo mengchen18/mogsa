@@ -25,7 +25,8 @@ Objects can be created by calls of the form \code{new("moa", ...)}.
     \item{\code{ctr.var}:}{ contribution of each variables to the total variance. } 
     \item{\code{ctr.tab}:}{contribution of each data to the total variance. } 
     \item{\code{RV}:}{ pairwise RV coefficients  } 
-    \item{\code{w.row}:}{ weight of rows } 
+    \item{\code{w.row}:}{ weight of rows }
+    \item{\code{w.data}:}{ weight of datasets } 
     \item{\code{data}:}{ the original input data } 
     \item{\code{tab.dim}:}{ the dimension of each input data } 
     \item{\code{call}:}{ call } 

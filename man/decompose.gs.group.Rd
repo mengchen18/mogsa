@@ -9,7 +9,7 @@
 }
 \usage{
   decompose.gs.group(x, gs, group, decomp = "data", nf = 2, x.legend = "bottomleft", 
-    y.legend = NULL, plot = TRUE, ...)
+    y.legend = NULL, plot = TRUE, main = NULL, ...)
 }
 
 \arguments{
@@ -38,6 +38,9 @@
 }
   \item{plot}{
     A logical indicates if a plot should be drawn.
+}
+  \item{main}{
+    The main title of plot.
 }
   \item{\dots}{
     Other arguments passed to \code{barplot}.

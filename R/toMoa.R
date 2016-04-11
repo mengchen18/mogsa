@@ -38,6 +38,7 @@ function(data, x, call) {
              ctr.tab = sweep(partial.eig, 2, eig, "/"),
              RV= RV,
              w.row = NA,
+             w.data = NA,
              data = data,
              tab.dim =tab.dim,
              call=call)
