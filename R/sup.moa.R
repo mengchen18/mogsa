@@ -64,7 +64,7 @@ sup.moa <- function(X, sup, nf=2,
       if (is.null(ks.cores)) 
         ks.cores <- getOption("mc.cores", 2L) 
       cat("running bootstrapping for p values of KS.stat ...\n")
-      pmat <- .ks.pval(X, sup, ks.B=ks.B, nf=nf, mc.cores = ks.cores)
+      pmat <- .ks.pval(X, sup, ks.B=ks.B, A = X@w.data, nf=nf, mc.cores = ks.cores)
       attr(pmat, "method") <- "KS.stat"
     }
   
