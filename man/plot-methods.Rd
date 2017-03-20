@@ -1,17 +1,16 @@
 \name{plot-methods}
 \docType{methods}
 \alias{plot-methods}
-% \alias{plot,moa,missing-method}
-\title{ ~~ Methods for Function \code{plot}  ~~}
+\title{ Methods for function \code{plot} }
 \description{
- ~~ Methods for function \code{plot}  ~~
+  Methods for function \code{plot}
 }
 
 \section{Methods}{
 \describe{
 
   \item{\code{signature(x = "moa", y = "missing")}}{
-	 plot moa object
+	 plot "moa" object
   }
     Argument "value" sould be one of "eig", "tau", "obs", "var" and "RV"\\
     

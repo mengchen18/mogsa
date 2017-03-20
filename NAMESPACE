@@ -1,3 +1,10 @@
+importFrom("grDevices", "gray.colors", "heat.colors")
+importFrom("graphics", "abline", "barplot", "layout", 
+	"legend", "lines", "matplot", "points", "segments", "text")
+importFrom("stats", "cutree", "dist", "hclust", "heatmap", 
+	"kmeans", "pnorm", "sd")
+importFrom("utils", "head")
+
 importFrom("genefilter" , "rowSds")
 importFrom("genefilter" , "rowFtests")
 importFrom("BiocGenerics", "combine")
@@ -42,7 +49,10 @@ export(
 
 exportMethods(
     "plot",
-    "combine"
+    "combine", 
+    "show", 
+    "print", 
+    "summary"
 )
 
 exportClasses(

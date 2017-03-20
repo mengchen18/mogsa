@@ -101,12 +101,14 @@ Objects can be created by calls of the form \code{new("moa", ...)}.
 
       ... 
 
-    
     var - the separate gene view, layout can be specified 
-    
     
     RV - the heatmap of RV coefficients 
     }
+
+    \item{show}{\code{signature(x = "moa", y = "missing")}:
+      show "moa" object
+     }
 	 }
 }
 \references{

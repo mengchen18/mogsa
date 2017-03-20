@@ -19,10 +19,14 @@
 }
 \section{Methods}{
 	\describe{
-  		\item{\code{signature(x = "mgsa", y = "mgsa")}}{
+  		\item{combine}{\code{signature(x = "mgsa", y = "mgsa")}}{
   			To combine two objects of class "mgsa"
   		}
   		This function could only be used to combine two "mgsa" objects, using "Reduce" function to combine more.
+
+      \item{show}{\code{signature(x = "moa", y = "missing")}:
+        show the "mgsa" result.
+      }
   	}
 }
 
