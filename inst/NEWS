@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.9.5
+Corrected a bug in sup.moa: if the name of input list is not alphabet order, the function will throw an error message
+
+And if you have any "unrelated" gene set, the function will print a message and remove them automatically. 
+
 CHANGES IN VERSION 1.9.3
 add summary, print and show methods for "mgsa", "moa" and "moa.sup" object
 

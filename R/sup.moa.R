@@ -17,8 +17,11 @@ sup.moa <- function(X, sup, nf=2,
   load <- load[nn]
   
   w <- rowSums(sapply(sup, colSums))
-  if (any(w == 0)) 
-    stop("unrelated pathways involved")
+  if (any(w == 0)) {
+    message("unrelated gene sets are detected and will be removed")
+    sup <- lapply(sup, function(x) x[, w > 0])
+  }
+    
   # normsup <- lapply(sup, function(x, w) {
   #   sweep(x, 2, w, "/")
   # }, w=w)
@@ -28,7 +31,7 @@ sup.moa <- function(X, sup, nf=2,
     a <- t(sup * A) %*% as.matrix(load[, 1:nf, drop=FALSE])
     colnames(a) <- paste("PC", 1:nf, sep="")
     return(a)
-  }, load=load, sup=normsup, A = split(X@w.data, names(X@w.data)))
+  }, load=load, sup=normsup, A = split(X@w.data, names(X@w.data))[nn])
 
   GSCoordinate_comb <- Reduce("+", GSCoordinate_sep)
   
