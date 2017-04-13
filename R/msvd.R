@@ -26,5 +26,7 @@ function(x, svd.sol=svd) {
   rownames(res$w) <- names(x)
   
   res <- res[c("tb", "pb", "t", "w")]
+  res$tb <- res$tb[names(x)]
+  res$pb <- res$pb[names(x)]
   return(res)
 }

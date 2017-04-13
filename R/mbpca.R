@@ -11,7 +11,7 @@ function(x, ncomp, method, k="all", center=TRUE,
   nc <- sapply(x, ncol)
   keepAll <- k[1] == 'all'
   prddata <- lapply(x, t)
-  ssl <- match.arg(svd.solver)
+  ssl <- match.arg(svd.solver[1], c("svd", "fast.svd", "propack"))
   svdf <- switch(ssl, 
                  "svd" = svd,
                  "fast.svd" = fast.svd,
