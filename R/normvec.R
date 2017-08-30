@@ -7,5 +7,8 @@ normvec <- function(x) {
     prd <- tcrossprod(x) else
       prd <- crossprod(x)
     
-  x/sqrt(c(prd))
+  length <- sqrt(c(prd))
+  v <- x/length
+  attr(v, "length") <- length
+  v
 }

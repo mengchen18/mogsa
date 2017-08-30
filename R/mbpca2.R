@@ -1,7 +1,6 @@
 # both rows and columns could be sparse
 
 mbpca2 <- function (
-  
   x, ncomp, method, 
   kp = "all", kt = "all", 
   unit.p = FALSE, unit.t = FALSE, 
@@ -38,9 +37,9 @@ mbpca2 <- function (
         r <- biSoftK(x, maxiter = maxiter, kp = kp, kt = kt, unit.pb = unit.p, unit.tb = unit.t)
       }
       x <- mogsa:::deflat(x, r$t, r$tb, r$pb, method)
-      if (i == 1) 
-        res <- r
-      else {
+      if (i == 1) {
+        res <- r 
+      } else {
         res$t <- cbind(res$t, r$t)
         res$w <- cbind(res$w, r$w)
         res$tb <- mapply(cbind, res$tb, r$tb, SIMPLIFY = FALSE)
