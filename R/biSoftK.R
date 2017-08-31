@@ -40,23 +40,35 @@ biSoftK <- function (x, maxiter, kp, kt, weight.p, weight.t, pos = FALSE, unit.p
 }
 
 # # examples
-# data("NCI60_4arrays")
-# library(svd)
-# library(corpcor)
-# source("R/mogsa/R/concordance.R")
-# source("R/mogsa/R/normvec.R")
-# source("R/mogsa/R/softK.R")
-# # source("R/mogsa/R/biSoftK.R")
-# # source("R/mogsa/R/mbpca2.R")
-# 
+data("NCI60_4arrays")
+library(svd)
+library(corpcor)
+source("R/mogsa/R/concordance.R")
+source("R/mogsa/R/normvec.R")
+source("R/mogsa/R/softK.R")
+# source("R/mogsa/R/biSoftK.R")
+# source("R/mogsa/R/mbpca2.R")
+
 # d <- lapply(NCI60_4arrays[2:4], function(x) scale(t(x)))
-# 
+# # 
 # x1 <- biSoftK(d, maxiter = 1000, kp = Inf, kt = Inf,
 #               weight.p = rep(1, length(d)),
 #               weight.t = rep(1, length(d)),
 #               pos = FALSE,
 #               unit.pb = TRUE, unit.tb = TRUE)
+# 
+# x1s <- biSoftK(d, maxiter = 1000, kp = Inf, kt = Inf,
+#               weight.p = 1,
+#               weight.t = 1,
+#               pos = FALSE,
+#               unit.pb = TRUE, unit.tb = TRUE)
+# 
+# 
+# identical(x1, x1s)
 # barplot(c(x1$t), col= as.factor(substr(colnames(NCI60_4arrays$agilent), 1, 2)))
+
+
+
 # 
 # x2 <- biSoftK(d, maxiter = 1000, kp = 30, kt = Inf,
 #               weight.p = rep(1, length(d)),

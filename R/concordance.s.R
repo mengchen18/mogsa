@@ -14,7 +14,6 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
   loading.y <- matrix(NA, py, ncomp)
   score.x <- matrix(NA, nsample*ndata, ncomp)
   score.y <- matrix(NA, nsample, ncomp)
-  eig <- c()
   
   # preprocessing of x and y
   y <- t(scale(t(y), center = center, scale = scale))
@@ -22,9 +21,7 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
   
   for (i in 1:ncomp) {
     cat(paste("calculating component", i, "...\n"))
-    
     ## construct covariance/correlation matrix
-    # ever loop if deflat x and/or y
     cmats <- lapply(x, tcrossprod, y)
     
     ## MBPCA
@@ -72,6 +69,5 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
        score.x = score.x,
        score.y = score.y, 
        loading.x.index = f.pb, 
-       score.x.index = f.tb,
-       eig = eig)
+       score.x.index = f.tb)
 }

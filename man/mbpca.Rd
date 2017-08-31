@@ -9,9 +9,11 @@
   generalized CCA (GCCA) and multiple co-inertia analsyis (MCIA).
 }
 \usage{
-mbpca(x, ncomp, method, k = "all", center = TRUE, scale = FALSE, 
-  option = "uniform", maxiter = 1000, moa = TRUE, verbose = TRUE, 
-  svd.solver = c("svd", "fast.svd", "propack"))
+mbpca(x, ncomp, method, k = "all", center = TRUE, 
+    scale = FALSE, option = "uniform", maxiter = 1000, 
+    moa = TRUE, verbose = TRUE, svd.solver = c("svd", "fast.svd", "propack"),
+    k.obs = "all", w = NA, w.obs = NA,
+    unit.p = FALSE, unit.obs = FALSE, pos = FALSE)
 }
 
 \arguments{
@@ -61,9 +63,32 @@ mbpca(x, ncomp, method, k = "all", center = TRUE, scale = FALSE,
   a good compromise between the robustness and speed. "propack" is the fastest but may failed to 
   converge in practice.
 }
+  \item{k.obs}{
+  The absolute number (if k >= 1) or the proportion (if 0<k<1) of non-zero coefficients 
+  for the observations. Sparse factor scores for observation are used by sparse concordance analysis.  
+  (New arguments from v1.12)  
+}
+  \item{w}{
+  The weight of variables. It could be given in the following format: 1) NA or a numeric value: all variables have the same weight; 2) A vector of numeric values, the vecter has the same length as x: variables in each block shares the same weight; 3) A list of vector, each vector in the list has the same length as the number of row in the corresponding table/block, then each variable use a different weight. See detail how to select weight.  (New arguments from v1.12)  
+}
+  \item{w.obs}{
+  The weight of observations, see w. (New arguments from v1.12)  
+}
+  \item{unit.p}{
+  A logical value, whether the loading vectors (for variables) for each table/block should be unit length.  
+}
+  \item{unit.obs}{ A logical value, whether the score vectors (for observations) for each table/block should be unit length. (New arguments from v1.12)  
+}
+  \item(pos){
+  A logical value, whether only retain non-negative coefficients in loading and score vectors.  (New arguments from v1.12)  
+}
 }
 \details{
-details need to update
+  Select of weight for variables:
+  In omics data, it is often true that low intensity variables suffers more noise. Therefore, 
+  The variables with higher intensities are more reliable. If we consider this, we can use the total 
+  sum intensity of a variable (or a tranform of it) as weight, the model would prefer to select high 
+  intensity variables.
 }
 \value{
     An object of class \code{\link{moa-class}} (if \code{moa=TRUE}) or 
@@ -78,13 +103,14 @@ details need to update
     \code{w} - the wegihts of block scores to construct the global scor
 }
 \references{
-  reference need to be updated
+  For clustering problem: Meng et al. 2015 moCluster: Identifying Joint Patterns Across Multiple Omics Data
+  Sets. Journal of proteome research.
 }
 \author{
   Chen Meng
 }
 \note{
-no note now
+  no note
 }
 
 
