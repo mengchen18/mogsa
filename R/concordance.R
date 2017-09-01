@@ -1,21 +1,12 @@
-concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, option = "uniform") {
+concord0 <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, option = "uniform", 
+                    kx = "all", ky = "all", wx = 1, wy = 1, pos = FALSE) {
   
   y <- t(scale(t(y), center = center, scale = scale))
   x <- mogsa:::processOpt(x, center = center, scale = scale, option = option)
-  
   X <- x
   Y <- y
-
-  tnorm <- function(x, f) {
-    v <- unique(f)
-    newv <- rep(NA, length(x))
-    for (i in v) {
-      ii <- f == i
-      xx <- normvec(x[ii])
-      newv[ii] <- xx
-    }
-    newv
-  }
+  if (kx == "all") kx <- Inf
+  if (ky == "all") ky <- Inf
   
   nmat <- length(X)
   if (is.null(names(X)))
@@ -36,9 +27,9 @@ concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, optio
   Xnorm.o <- Xnorm
   
   ys <- yloading <- gls <- bls <- loading <- c()
-  xvar <- c()
-  var <- c()
-
+  xvar <- var <- c()
+  
+  
   for (f in 1:ncomp) {
     print(f)
     if (f == 1 || dmod != 1 )
@@ -46,7 +37,8 @@ concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, optio
     if (f == 1)
       S.o <- S
     
-    decom <- propack.svd(S, neig = 1, opts = list(kmax = 20))
+    # decom <- propack.svd(S, neig = 1, opts = list(kmax = 20))
+    decom <- softSVD(x = S, nf = 1, kv = kx, ku = ky, wv = wx, wu = wy, pos = pos, maxiter = 1000)
     
     xa <- Xcat %*% decom$v[, 1]
     yb <- Ynorm %*% decom$u[, 1]
@@ -59,7 +51,7 @@ concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, optio
     xai <- lapply(names(X), function(x) {
       ii <- i.feature == x
       Xcat[, ii] %*% decom$v[ii, 1]
-      })
+    })
     
     xai.var <- sapply(xai, crossprod)
     xvar <- cbind(xvar, xai.var)
@@ -89,7 +81,7 @@ concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, optio
     } else {
       stop("unknown dmod")
     }
-
+    
   }
   
   rownames(loading) <- colnames(Xcat)
@@ -101,22 +93,6 @@ concord <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, optio
        score.y = ys, 
        loading.x.index = i.feature, 
        score.x.index = i.sample)
-  
-  # list(i.sample = ,
-  #      i.feature = , 
-  #      ys = , 
-  #      ys.norm = apply(ys, 2, normvec),
-  #      yloading = , 
-  #      gls = ,
-  #      gls.norm = apply(gls, 2, normvec),
-  #      bls = bls,
-  #      bls.norm = apply(bls, 2, tnorm, f=i.sample),
-  #      loading = ,
-  #      xvar = xvar, 
-  #      var = var, 
-  #      S = S.o, 
-  #      Ynorm = Ynorm.o, 
-  #      Xnorm = Xnorm.o)
 }
 
 
