@@ -1,5 +1,5 @@
-sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p = TRUE, unit.t = TRUE, 
-                     center = TRUE, scale = FALSE, option = "uniform") {
+sconcord <- function(x, y, ncomp = 1, kx = "all", ky = "all", center = TRUE, scale = FALSE, option = "uniform", 
+                     wx = 1, wy = 1, unit.p = TRUE, unit.t = TRUE) {
   
   ndata <- length(x)
   pb <- sapply(x, nrow)
@@ -13,6 +13,7 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
   loading.x <- matrix(NA, pbt, ncomp)
   loading.y <- matrix(NA, py, ncomp)
   score.x <- matrix(NA, nsample*ndata, ncomp)
+  score.xcomb <- matrix(NA, nsample, ncomp)
   score.y <- matrix(NA, nsample, ncomp)
   
   # preprocessing of x and y
@@ -25,8 +26,8 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
     cmats <- lapply(x, tcrossprod, y)
     
     ## MBPCA
-    res <- mbpca2(cmats, ncomp = 1, method = "globalScore", kp = kp, kt = kt, moa = FALSE, verbose = FALSE, 
-                  unit.p = unit.p, unit.t = unit.t, center = FALSE, scale = FALSE)
+    res <- mbpca(cmats, ncomp = 1, method = "globalScore", k = kx, k.obs = ky, moa = FALSE, verbose = FALSE, 
+                  unit.p = unit.p, unit.obs = unit.t, center = FALSE, scale = FALSE)
     
     ## output
     t1 <- normvec(res$t)
@@ -34,14 +35,15 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
     fac.x <- mapply(SIMPLIFY = FALSE, crossprod, x, res$pb)
     loading.x[, i] <- unlist(res$pb)
     score.x[, i] <- unlist(fac.x)
+    score.xcomb[, i] <- do.call(cbind, fac.x) %*% res$w
     loading.y[, i] <- t1
     score.y[, i] <- fac.y
-    eig <- c(eig, res$eig)
     
     ## deflation
     delta.y <- tcrossprod(t1, fac.y)
     y <- y - delta.y
     
+    # different deflat, not necessary now
     # if (dmod == 1 | dmod == 2) {
     #   # only deflat Y, dmod = 1
     #   delta.y <- tcrossprod(t1, fac.y)
@@ -67,6 +69,7 @@ sconcord <- function(x, y, ncomp = 1, kp = "all", kt = "all", dmod = 1, unit.p =
   list(loading.x = loading.x, 
        loading.y = loading.y,
        score.x = score.x,
+       score.xcomb = score.xcomb,
        score.y = score.y, 
        loading.x.index = f.pb, 
        score.x.index = f.tb)
