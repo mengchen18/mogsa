@@ -277,6 +277,7 @@ list from package \Biocpkg{graphite} \cite{graphite} using function \Rfunction{p
 <<prepGraphite>>=
 library(graphite)
 keggdb <- prepGraphite(db = pathways("hsapiens", "kegg")[1:50], id = "symbol")
+keggdb <- lapply(keggdb, function(x) sub("SYMBOL:", "", x))
 keggdb[1:2]
 @ 
 

@@ -49,7 +49,10 @@
 \examples{
   library(graphite)
   data(NCI60_4arrays)
-  gss <- prepGraphite(db = kegg[6:10], id="symbol")
+  kegg <- pathways(species = "hsapiens", "kegg")
+  pw <- c("Purine metabolism", "Endocrine resistance", "MAPK signaling pathway")
+  gss <- prepGraphite(db = kegg[pw], id="symbol")
+  gss <- lapply(gss, function(x) sub("SYMBOL:", "", x))
   sup_data1 <- prepSupMoa(NCI60_4arrays, geneSets=gss)
   gene_list <- lapply(NCI60_4arrays, rownames)
   sup_data2 <- prepSupMoa(gene_list, geneSets=gss)
