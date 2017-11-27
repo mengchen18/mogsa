@@ -16,7 +16,9 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
   if (id %in% "symbol") {
 
     cat("converting identifiers!\n")
-    db <- lapply(db, convertIdentifiers, to="symbol")
+    suppressMessages(
+      db <- lapply(db, convertIdentifiers, to="symbol")
+      )
     cat("converting identifiers done!\n")
     gs <- lapply(db, nodes)
   
@@ -31,7 +33,9 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
     } else if (tolower(database) %in% c("humancyc", "panther", "reactome", "nci")) {
     
       cat("converting identifiers!")
-      db <- lapply(db, convertIdentifiers, to="entrez")
+      suppressMessages(
+        db <- lapply(db, convertIdentifiers, to="entrez")
+        )
       cat("converting identifiers done!\n")
       gs <- lapply(db, nodes)
     
@@ -88,7 +92,7 @@ prepSupMoa <- function (X, geneSets, minMatch=10, maxMatch=500) {
       return (r)} )
     ii <- rowSums(sapply(r, colSums))
     i <- ii >= minMatch & ii <= maxMatch
-    r <- lapply(r, function(x) x[, i])
+    r <- lapply(r, function(x) x[, i, drop = FALSE])
   
   } else
     stop("unknown type of X")

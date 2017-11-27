@@ -16,7 +16,11 @@ sup.moa <- function(X, sup, nf=2,
   load <- split(X@loading, f=rep(nn, repr))
   load <- load[nn]
   
-  w <- rowSums(sapply(sup, colSums))
+  cols <- sapply(sup, colSums)
+  if (!is.matrix(cols))
+    cols <- matrix(cols, nrow = length(sup))
+  w <- rowSums(cols)
+
   if (any(w == 0)) {
     message("unrelated gene sets are detected and will be removed")
     sup <- lapply(sup, function(x) x[, w > 0])
@@ -107,6 +111,9 @@ sup.moa <- function(X, sup, nf=2,
   supn <- colSums(sup != 0)
   # calculate the P value
   pmat <- sapply(1:ncol(rec), function(i) ff(rec[, i], supn, score = score[, i]))
+  if (!is.matrix(pmat))
+    pmat <- matrix(pmat, ncol = ncol(rec))
+  
   colnames(pmat) <- colnames(score)
   rownames(pmat) <- rownames(score)
   return(pmat)
