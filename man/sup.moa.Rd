@@ -8,7 +8,7 @@
     Projecting supplementary tables on \code{\link{moa-class}}
 }
 \usage{
-    sup.moa(X, sup, nf = 2, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
+    sup.moa(X, sup, nf = 2, factors = NULL, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
 }
 
 \arguments{
@@ -20,6 +20,9 @@
   }
   \item{nf}{
     The number of principal components used in the projection.
+  }
+  \item{factors}{
+    The index of principal components used in the projection, used when non-consecutive PC to be included in the analysis.
   }
   \item{ks.stat}{
     The logical indicates if the p-value should be calculated using K-S statistic (the method used in "ssgsea" in GSVA package). 

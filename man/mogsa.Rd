@@ -11,7 +11,7 @@
 }
 
 \usage{
-  mogsa(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
+  mogsa(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
 }
 
 \arguments{
@@ -23,6 +23,9 @@
     }
     \item{nf}{
       The number of principal components used to reconstruct, only used when x is a an object of \code{list}.
+    }
+    \item{factors}{
+    The index of principal components used in the projection, used when non-consecutive PC to be included in the analysis.
     }
     \item{proc.row}{
       Preprocessing of rows. If x is a object of \code{list}, it is passed \code{moa}
