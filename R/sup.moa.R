@@ -3,20 +3,18 @@
 #   sup - the supplementary table (nVar * nIndividual)
 #   axes - which axes should be used
 
-sup.moa <- function(X, sup, nf=2, factors = NULL, 
+sup.moa <- function(X, sup, nf = 2, factors = NULL, 
   ks.stat=FALSE, ks.B = 1000, ks.cores = NULL) {
 
   if (is.null(nf) & is.null(factors))
     stop("nf or factors need to be specified.")
 
-  if (!is.null(factors))
+  if (!is.null(factors)) {
+    if (!is.null(nf))
+      message("factors is given, nf will be ignored.")
     pcomp <- factors
-
-  if (!is.null(nf)) {
+  } else if (!is.null(nf)) 
     pcomp <- 1:nf
-    if (!is.null(factors))
-      warning("nf is given, factors will be ignored. If you want to specify factors, set nf=NULL.")
-  }
 
   # sup, nf
   N <- length(sup)
