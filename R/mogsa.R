@@ -3,8 +3,8 @@ mogsa <- function(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, w
   # if sup is NULL .....
   # extract data and moa
   if (inherits(x, "list")) {
-    if (is.null(nf))
-      stop("x is an object of \"list\", nf need to be set.")
+    if (is.null(nf) & is.null(factors))
+      stop("x is an object of \"list\", nf or factors need to be set.")
     if (is.null(proc.row))
       stop("x is an object of \"list\", proc.row need to be set.")
     if (is.null(w.data))
