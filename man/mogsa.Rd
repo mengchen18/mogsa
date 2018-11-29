@@ -87,6 +87,8 @@
   # using a list of data.frame as input
   mgsa1 <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
                  proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+  mgsa1x <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, factors = c(1,3,6),
+                 proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
   # using moa as input
   ana <- moa(NCI60_4arrays, proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
   smoa <- sup.moa(ana, sup=NCI60_4array_supdata, nf=3)
