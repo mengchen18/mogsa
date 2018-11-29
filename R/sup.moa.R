@@ -50,8 +50,8 @@ sup.moa <- function(X, sup, nf = 2, factors = NULL,
   GSCoordinate_comb <- Reduce("+", GSCoordinate_sep)
   
   contribution <- lapply(GSCoordinate_sep, function(supcor, score) {
-    a <- lapply(pcomp, function(i) {
-      r <- outer(supcor[, i], score[, i])
+    a <- lapply(1:length(pcomp), function(i) {
+      r <- outer(supcor[, i], score[, pcomp[i]])
       colnames(r) <- rownames(score)
       return(r)
     })
@@ -64,7 +64,7 @@ sup.moa <- function(X, sup, nf = 2, factors = NULL,
     Reduce("+", x)
   })
   
-  contribution_pc <- lapply(pcomp, function(i, cont) {
+  contribution_pc <- lapply(1:length(pcomp), function(i, cont) {
     a <- lapply(cont, function(x) x[[i]])
     Reduce("+", a)
   }, cont=contribution)
