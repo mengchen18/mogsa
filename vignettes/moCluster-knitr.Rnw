@@ -1,5 +1,5 @@
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{mogsa: gene set analysis on multiple omics data}
+%\VignetteIndexEntry{moCluster: Integrative clustering using multiple omics data}
 
 \documentclass{article}
 
