@@ -25,7 +25,7 @@ setClass(Class = "moa",
 
 setClass(Class="moa.sup",
   slots = c("sup", "coord.sep", "coord.comb",
-    "score", "score.data", "score.pc", "score.sep", "p.val"),
+    "score", "score.data", "score.pc", "score.sep", "p.val", "p.val.corrected"),
   prototype = prototype(
     sup = c("list", "data.frame", "matrix"),
     coord.sep = "list",
@@ -34,7 +34,8 @@ setClass(Class="moa.sup",
     score.data = "list",
     score.pc = "list",
     score.sep = "list",
-    p.val = "matrix"),
+    p.val = "matrix",
+    p.val.corrected = "matrix"),
   sealed=TRUE,
   package = "mogsa")
 

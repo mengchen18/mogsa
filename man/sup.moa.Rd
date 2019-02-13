@@ -8,7 +8,7 @@
     Projecting supplementary tables on \code{\link{moa-class}}
 }
 \usage{
-    sup.moa(X, sup, nf = 2, factors = NULL, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
+    sup.moa(X, sup, nf = 2, factors = NULL, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none")
 }
 
 \arguments{
@@ -34,6 +34,9 @@
   \item{ks.cores}{
     An integer indicate the number of cores to be used in bootstrapping. It is passed to function \code{mclapply} in the 
     \code{parallel} package.
+  }
+  \item{p.adjust.method}{
+    The method of p value adjustment, passed to \code{p.adjust} function.
   }
 }
 

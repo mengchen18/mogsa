@@ -4,6 +4,7 @@ importFrom("graphics", "abline", "barplot", "layout",
 importFrom("stats", "cutree", "dist", "hclust", "heatmap", 
 	"kmeans", "pnorm", "sd")
 importFrom("utils", "head")
+importFrom("stats", "p.adjust")
 
 importFrom("genefilter" , "rowSds")
 importFrom("genefilter" , "rowFtests")

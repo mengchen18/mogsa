@@ -1,10 +1,5 @@
-# Input arguments:
-#   X - the output of mpSTATIS
-#   sup - the supplementary table (nVar * nIndividual)
-#   axes - which axes should be used
-
 sup.moa <- function(X, sup, nf = 2, factors = NULL, 
-  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL) {
+  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none") {
 
   if (is.null(nf) & is.null(factors))
     stop("nf or factors need to be specified.")
@@ -85,6 +80,9 @@ sup.moa <- function(X, sup, nf = 2, factors = NULL,
       attr(pmat, "method") <- "KS.stat"
     }
   
+  pmatadj <- matrix(p.adjust(pmat, method = p.adjust.method), nrow(pmat), ncol(pmat))
+  attr(pmatadj, "method") <- p.adjust.method
+
   res <- new("moa.sup", 
     sup = sup,
     coord.comb = GSCoordinate_comb,
@@ -93,7 +91,8 @@ sup.moa <- function(X, sup, nf = 2, factors = NULL,
     score.data = contribution_dataset,
     score.pc = contribution_pc,
     score.sep = contribution,
-    p.val = pmat
+    p.val = pmat,
+    p.val.corrected = pmatadj
     )
   return(res)
 }

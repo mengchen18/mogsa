@@ -11,7 +11,7 @@
 }
 
 \usage{
-  mogsa(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
+  mogsa(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none")
 }
 
 \arguments{
@@ -49,6 +49,9 @@
     \item{ks.cores}{
       An integer indicate the number of cores to be used in bootstrapping. It is passed to function \code{mclapply} in the 
       \code{parallel} package.
+    }
+    \item{p.adjust.method}{
+    The method of p value adjustment, passed to \code{p.adjust} function.
     }
 }
 
