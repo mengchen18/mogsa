@@ -9,7 +9,7 @@
     form that columns are samples and rows are variables/features.
 }
 \usage{
-  moa(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE)
+  moa(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE, moa=TRUE)
 }
 
 \arguments{
@@ -46,6 +46,9 @@
   }
   \item{statis}{
     A logical indicates whether STATIS method should be used. See details.
+  }
+  \item{moa}{
+    Logical; whether the output should be converted to an object of class \code{\link{moa-class}}
   }
 }
 

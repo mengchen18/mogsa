@@ -105,6 +105,8 @@ gap <- moGap(moa, K.max = 12, cluster = "hcl")
 genes <- moaCoef(moa)
 scr <- moaScore(moa)
 
+moa2 <- moa(NCI60_4arrays, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE)
+gap2 <- moGap(moa, K.max = 12, cluster = "hcl")
 }
 
 \keyword{ gap statistic }
