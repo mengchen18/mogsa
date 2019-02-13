@@ -88,7 +88,6 @@ no note now
 }
 
 
-
 \seealso{
   see \code{\link{moa}} for non-iterative algorithms for multi-block PCA.
 }

@@ -45,7 +45,8 @@ export(
 	"softK",
 	"mbpca",
 	"moaScore",
-	"moaCoef"
+	"moaCoef",
+	"bootMoa"
 )
 
 exportMethods(

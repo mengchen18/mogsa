@@ -100,6 +100,9 @@
   plot(ana, value = "var", layout=matrix(1:4, 2, 2))
   # plot the RV coefficients for the data sets
   plot(ana, value = "RV")
+
+  # to extract the components representing significant concordance structures between datasets
+  bt <- bootMoa(moa = ana, proc.row = "center_ssq1", w.data = "inertia", statis = TRUE, B = 20)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
