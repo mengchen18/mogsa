@@ -297,7 +297,7 @@ directly passed into the \Rfunction{mogsa}.
 
 <<prepInput>>=
 # the prepare
-sup_data1 <- prepSupMoa(NCI60_4arrays, geneSets=keggdb)
+sup_data1 <- prepSupMoa(NCI60_4arrays, geneSets=keggdb, minMatch = 1)
 mgsa3 <- mogsa(x = NCI60_4arrays, sup=sup_data1, nf=3,
                proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
 @ 
