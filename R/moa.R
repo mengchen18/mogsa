@@ -30,7 +30,7 @@
 #     ctr.tab - contribution of tables
 #     partial.eig - partial eigen value
 
-moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE) {
+moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE, moa=TRUE) {
   
   kd <- data  
   data <- lapply(data, as.matrix)
@@ -71,6 +71,10 @@ moa <- function(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, stat
   d1 <- .concateTabs(wD$x)
   Xt <- d1$tab * wData / sqrt(nObs)
   sing <- svd(Xt)
+  
+  if (!moa)
+    return(sing)
+
   decom <- .read.svd(x=sing, data=wD$x, 
                       M=wObs, A=wData^2,
                       design=rep(names(data), nRows))

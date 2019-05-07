@@ -9,7 +9,7 @@
     form that columns are samples and rows are variables/features.
 }
 \usage{
-  moa(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE)
+  moa(data, proc.row="center_ssq1", w.data="inertia", w.row=NULL, statis=FALSE, moa=TRUE)
 }
 
 \arguments{
@@ -46,6 +46,9 @@
   }
   \item{statis}{
     A logical indicates whether STATIS method should be used. See details.
+  }
+  \item{moa}{
+    Logical; whether the output should be converted to an object of class \code{\link{moa-class}}
   }
 }
 
@@ -97,6 +100,9 @@
   plot(ana, value = "var", layout=matrix(1:4, 2, 2))
   # plot the RV coefficients for the data sets
   plot(ana, value = "RV")
+
+  # to extract the components representing significant concordance structures between datasets
+  bt <- bootMoa(moa = ana, proc.row = "center_ssq1", w.data = "inertia", statis = TRUE, B = 20)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -1,10 +1,15 @@
-# Input arguments:
-#   X - the output of mpSTATIS
-#   sup - the supplementary table (nVar * nIndividual)
-#   axes - which axes should be used
+sup.moa <- function(X, sup, nf = 2, factors = NULL, 
+  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none") {
 
-sup.moa <- function(X, sup, nf=2, 
-  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL) {
+  if (is.null(nf) & is.null(factors))
+    stop("nf or factors need to be specified.")
+
+  if (!is.null(factors)) {
+    if (!is.null(nf))
+      message("factors is given, nf will be ignored.")
+    pcomp <- factors
+  } else if (!is.null(nf)) 
+    pcomp <- 1:nf
 
   # sup, nf
   N <- length(sup)
@@ -16,7 +21,11 @@ sup.moa <- function(X, sup, nf=2,
   load <- split(X@loading, f=rep(nn, repr))
   load <- load[nn]
   
-  w <- rowSums(sapply(sup, colSums))
+  cols <- sapply(sup, colSums)
+  if (!is.matrix(cols))
+    cols <- matrix(cols, nrow = length(sup))
+  w <- rowSums(cols)
+
   if (any(w == 0)) {
     message("unrelated gene sets are detected and will be removed")
     sup <- lapply(sup, function(x) x[, w > 0])
@@ -28,21 +37,21 @@ sup.moa <- function(X, sup, nf=2,
   normsup <- sup # change here
 
   GSCoordinate_sep <- mapply(SIMPLIFY=FALSE, function(load, sup, A) {
-    a <- t(sup * A) %*% as.matrix(load[, 1:nf, drop=FALSE])
-    colnames(a) <- paste("PC", 1:nf, sep="")
+    a <- t(sup * A) %*% as.matrix(load[, pcomp, drop=FALSE])
+    colnames(a) <- paste("PC", pcomp, sep="")
     return(a)
   }, load=load, sup=normsup, A = split(X@w.data, names(X@w.data))[nn])
 
   GSCoordinate_comb <- Reduce("+", GSCoordinate_sep)
   
   contribution <- lapply(GSCoordinate_sep, function(supcor, score) {
-    a <- lapply(1:nf, function(i) {
-      r <- outer(supcor[, i], score[, i])
+    a <- lapply(1:length(pcomp), function(i) {
+      r <- outer(supcor[, i], score[, pcomp[i]])
       colnames(r) <- rownames(score)
       return(r)
     })
     a[is.na(a)] <- 0
-    names(a) <- paste("PC", 1:nf, sep="")
+    names(a) <- paste("PC", pcomp, sep="")
     return(a)
   }, score=fs)
   
@@ -50,27 +59,30 @@ sup.moa <- function(X, sup, nf=2,
     Reduce("+", x)
   })
   
-  contribution_pc <- lapply(1:nf, function(i, cont) {
+  contribution_pc <- lapply(1:length(pcomp), function(i, cont) {
     a <- lapply(cont, function(x) x[[i]])
     Reduce("+", a)
   }, cont=contribution)
-  names(contribution_pc) <- paste("PC", 1:nf, sep="")
+  names(contribution_pc) <- paste("PC", pcomp, sep="")
   
   contribution_total <- Reduce("+", contribution_dataset) 
 
   csup <- do.call("rbind", sup)
   if (!ks.stat) {
     pmat <- .signifGS(X=X, sup=csup, A = X@w.data, 
-      score=contribution_total, nf=nf)
+      score=contribution_total, factors=pcomp)
     attr(pmat, "method") <- "zscore"
     } else {
       if (is.null(ks.cores)) 
         ks.cores <- getOption("mc.cores", 2L) 
       cat("running bootstrapping for p values of KS.stat ...\n")
-      pmat <- .ks.pval(X, sup, ks.B=ks.B, A = X@w.data, nf=nf, mc.cores = ks.cores)
+      pmat <- .ks.pval(X, sup, ks.B=ks.B, A = X@w.data, factors=pcomp, mc.cores = ks.cores)
       attr(pmat, "method") <- "KS.stat"
     }
   
+  pmatadj <- matrix(p.adjust(pmat, method = p.adjust.method), nrow(pmat), ncol(pmat))
+  attr(pmatadj, "method") <- p.adjust.method
+
   res <- new("moa.sup", 
     sup = sup,
     coord.comb = GSCoordinate_comb,
@@ -79,13 +91,14 @@ sup.moa <- function(X, sup, nf=2,
     score.data = contribution_dataset,
     score.pc = contribution_pc,
     score.sep = contribution,
-    p.val = pmat
+    p.val = pmat,
+    p.val.corrected = pmatadj
     )
   return(res)
 }
 
 
-.signifGS <- function(X, sup, A, score, nf) {
+.signifGS <- function(X, sup, A, score, factors) {
   
   # define function 
   ff <- function(x, n, score, infinite=FALSE) {
@@ -99,14 +112,17 @@ sup.moa <- function(X, sup, nf=2,
     2 * rowMin(cbind(pp, 1-pp))
   }
   # reconstuct matrix using nf PCs
-  U <- as.matrix(X@loading[, 1:nf, drop=FALSE]) 
-  D <- diag(sqrt(X@eig[1:nf]), nrow = nf)
-  V <- as.matrix(X@eig.vec[, 1:nf, drop=FALSE])
+  U <- as.matrix(X@loading[, factors, drop=FALSE]) 
+  D <- diag(sqrt(X@eig[factors]), nrow = length(factors))
+  V <- as.matrix(X@eig.vec[, factors, drop=FALSE])
   rec <- (U %*% D %*% t(V)) * A
   # the number of feature in each GS
   supn <- colSums(sup != 0)
   # calculate the P value
   pmat <- sapply(1:ncol(rec), function(i) ff(rec[, i], supn, score = score[, i]))
+  if (!is.matrix(pmat))
+    pmat <- matrix(pmat, ncol = ncol(rec))
+  
   colnames(pmat) <- colnames(score)
   rownames(pmat) <- rownames(score)
   return(pmat)

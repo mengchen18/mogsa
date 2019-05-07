@@ -55,7 +55,7 @@ bootMbpca(moa, mc.cores = 1, B = 100, replace = TRUE,
 }
 }
 \details{
-update details.
+  Bootstrap method were used to determine the components that are presenting significant concordant structure between datasets.
 }
 \value{
 It returns a matrix, columns are eigenvalues for different components. Each rows is a bootstramp sample.

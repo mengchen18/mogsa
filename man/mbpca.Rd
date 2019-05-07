@@ -114,7 +114,6 @@ mbpca(x, ncomp, method, k = "all", center = TRUE,
 }
 
 
-
 \seealso{
   see \code{\link{moa}} for non-iterative algorithms for multi-block PCA.
 }

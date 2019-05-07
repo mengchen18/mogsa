@@ -1,7 +1,7 @@
 
-.ks.pval <- function(moa, sup, ks.B, A, nf, mc.cores = getOption("mc.cores", 2L)) {
+.ks.pval <- function(moa, sup, ks.B, A, factors, mc.cores = getOption("mc.cores", 2L)) {
   
-  rmat <- as.matrix(moa@loading[, 1:nf]) %*% t(as.matrix(moa@fac.scr[, 1:nf])) * A
+  rmat <- as.matrix(moa@loading[, factors]) %*% t(as.matrix(moa@fac.scr[, factors])) * A
   sup <- do.call("rbind", sup)
   supIdx <- apply(sup, 2, function(x) which(x != 0))
   if (is.matrix(supIdx))

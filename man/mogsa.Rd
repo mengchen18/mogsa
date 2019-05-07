@@ -11,7 +11,7 @@
 }
 
 \usage{
-  mogsa(x, sup, nf=NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL)
+  mogsa(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none")
 }
 
 \arguments{
@@ -23,6 +23,9 @@
     }
     \item{nf}{
       The number of principal components used to reconstruct, only used when x is a an object of \code{list}.
+    }
+    \item{factors}{
+    The index of principal components used in the projection, used when non-consecutive PC to be included in the analysis.
     }
     \item{proc.row}{
       Preprocessing of rows. If x is a object of \code{list}, it is passed \code{moa}
@@ -46,6 +49,9 @@
     \item{ks.cores}{
       An integer indicate the number of cores to be used in bootstrapping. It is passed to function \code{mclapply} in the 
       \code{parallel} package.
+    }
+    \item{p.adjust.method}{
+    The method of p value adjustment, passed to \code{p.adjust} function.
     }
 }
 
@@ -83,6 +89,8 @@
 
   # using a list of data.frame as input
   mgsa1 <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
+                 proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+  mgsa1x <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, factors = c(1,3,6),
                  proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
   # using moa as input
   ana <- moa(NCI60_4arrays, proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)

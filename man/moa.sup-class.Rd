@@ -19,7 +19,8 @@
     \item{\code{score.data}:}{the gene set-sample pathway score, data separate}
     \item{\code{score.pc}:}{the gene set-sample pathway score, PC separate}
     \item{\code{score.sep}:}{the gene set-sample pathway score, separate. }
-    \item{\code{p.val}:}{the p value matrix have the same dimension with 	score matrix. }
+    \item{\code{p.val}:}{the p value matrix have the same dimension with score matrix. }
+    \item{\code{p.val.corrected}:}{the matrix of corrected p values. }
   }
 }
 \section{Methods}{
