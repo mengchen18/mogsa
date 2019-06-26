@@ -1,5 +1,5 @@
 mogsa <- function(x, sup, nf=NULL, factors = NULL, proc.row=NULL, w.data=NULL, 
-  w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none") {
+  w.row=NULL, statis=FALSE, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "fdr") {
   
   # if sup is NULL .....
   # extract data and moa

@@ -5,7 +5,7 @@
   Soft-thresholding operator
 }
 \description{
-  Soft-thresholding operator, which is called by \code{\link{mbpca}}.
+  Weighted soft-thresholding operator, which is called by \code{\link{mbpca}}.
 }
 \usage{
 softK(x, k)
@@ -18,10 +18,16 @@ softK(x, k)
   \item{k}{
   Number of non-zero elements want to keep
 }
+  \item(w){
+  weight for each element. The actual thresholding is base on x*w, the default setting equals to ordinary soft thresholding. 
+}
+  \item(pos){
+  A logical value, if only positive values are retained.
+}
 }
 
 \value{
-    A numerical vector
+    A thresholded numerical vector
 }
 
 \author{
@@ -34,3 +40,6 @@ softK(v, k = 2)
 }
 
 \keyword{soft threshold}
+\keyword{soft thresholding}
+\keyword{weighted soft threshold}
+\keyword{weighted soft thresholding}
