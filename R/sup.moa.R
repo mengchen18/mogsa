@@ -1,5 +1,5 @@
 sup.moa <- function(X, sup, nf = 2, factors = NULL, 
-  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none") {
+  ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "fdr") {
 
   if (is.null(nf) & is.null(factors))
     stop("nf or factors need to be specified.")
