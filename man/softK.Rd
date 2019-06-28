@@ -8,7 +8,7 @@
   Weighted soft-thresholding operator, which is called by \code{\link{mbpca}}.
 }
 \usage{
-softK(x, k)
+softK(x, k, w = 1, pos = FALSE)
 }
 
 \arguments{
@@ -18,10 +18,10 @@ softK(x, k)
   \item{k}{
   Number of non-zero elements want to keep
 }
-  \item(w){
+  \item{w}{
   weight for each element. The actual thresholding is base on x*w, the default setting equals to ordinary soft thresholding. 
 }
-  \item(pos){
+  \item{pos}{
   A logical value, if only positive values are retained.
 }
 }

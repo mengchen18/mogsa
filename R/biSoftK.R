@@ -40,12 +40,12 @@ biSoftK <- function (x, maxiter, kp, kt, weight.p, weight.t, pos = FALSE, unit.p
 }
 
 # # examples
-data("NCI60_4arrays")
-library(svd)
-library(corpcor)
-source("R/mogsa/R/concordance.R")
-source("R/mogsa/R/normvec.R")
-source("R/mogsa/R/softK.R")
+# data("NCI60_4arrays")
+# library(svd)
+# library(corpcor)
+# source("R/mogsa/R/concordance.R")
+# source("R/mogsa/R/normvec.R")
+# source("R/mogsa/R/softK.R")
 # source("R/mogsa/R/biSoftK.R")
 # source("R/mogsa/R/mbpca2.R")
 

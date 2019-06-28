@@ -79,7 +79,7 @@ mbpca(x, ncomp, method, k = "all", center = TRUE,
 }
   \item{unit.obs}{ A logical value, whether the score vectors (for observations) for each table/block should be unit length. (New arguments from v1.12)  
 }
-  \item(pos){
+  \item{pos}{
   A logical value, whether only retain non-negative coefficients in loading and score vectors.  (New arguments from v1.12)  
 }
 }

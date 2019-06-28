@@ -9,7 +9,7 @@ mbpca <-
     x <- lapply(x, t)
 
     call <- match.call()
-    x <- mogsa:::processOpt(x, center = center, scale = scale, option = option)
+    x <- processOpt(x, center = center, scale = scale, option = option)
     nc <- sapply(x, ncol)
     keepAllb <- k[1] == "all"
     keepAllt <- k.obs[1] == "all"
@@ -24,7 +24,7 @@ mbpca <-
       if (verbose) 
         cat(paste("calculating component ", i, " ...\n", sep = ""))
       if (keepAllb & keepAllt) 
-        r <- mogsa:::msvd(x, svd.sol = svdf)
+        r <- msvd(x, svd.sol = svdf)
       else {
         
         if (is.na(w)[1])
@@ -43,7 +43,7 @@ mbpca <-
         r <- biSoftK(x, maxiter = maxiter, kp = k, kt = k.obs, unit.pb = unit.p, 
           unit.tb = unit.obs, weight.p = w, weight.t = w.obs, pos = pos)
       }
-      x <- mogsa:::deflat(x, r$t, r$tb, r$pb, method)
+      x <- deflat(x, r$t, r$tb, r$pb, method)
       if (i == 1) {
         res <- r 
       } else {
@@ -54,6 +54,6 @@ mbpca <-
       }
     }
     if (moa) 
-      res <- mogsa:::toMoa(prddata, res, call = call)
+      res <- toMoa(prddata, res, call = call)
     return(res)
   }

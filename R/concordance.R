@@ -2,7 +2,7 @@ concord0 <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, opti
                     kx = "all", ky = "all", wx = 1, wy = 1, pos = FALSE) {
   
   y <- t(scale(t(y), center = center, scale = scale))
-  x <- mogsa:::processOpt(x, center = center, scale = scale, option = option)
+  x <- processOpt(x, center = center, scale = scale, option = option)
   X <- x
   Y <- y
   if (kx == "all") kx <- Inf

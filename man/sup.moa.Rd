@@ -8,7 +8,7 @@
     Projecting supplementary tables on \code{\link{moa-class}}
 }
 \usage{
-    sup.moa(X, sup, nf = 2, factors = NULL, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "none")
+    sup.moa(X, sup, nf = 2, factors = NULL, ks.stat=FALSE, ks.B = 1000, ks.cores = NULL, p.adjust.method = "fdr")
 }
 
 \arguments{
