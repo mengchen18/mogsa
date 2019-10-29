@@ -1,7 +1,7 @@
 Package: mogsa
 Type: Package
 Title: Multiple omics data integrative clustering and gene set analysis
-Version: 1.20.0
+Version: 1.21.0
 Date: 2019-06-28
 Author: Chen Meng
 Maintainer: Chen Meng <mengchen18@gmail.com>
