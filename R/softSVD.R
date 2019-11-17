@@ -18,10 +18,8 @@
 #' @description SVD with sparsity, non-negative and weight constrants
 #' @seealso \code{\link{svd}}
 #' @return the same as svd, list of three components, d, u, v
+#' @importFrom corpcor fast.svd
 #' @examples 
-#' library(corpcor)
-#' source("R/mogsa/R/normvec.R")
-#' source("R/mogsa/R/softK.R")
 #' 
 #' #' a random matrix
 #' x <- matrix(rnorm(50), 5, 10)
