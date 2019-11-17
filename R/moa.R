@@ -83,6 +83,7 @@
 #' Domininique Valentin. Multiple factor analysis: principal component analysis
 #' for multitable and multiblock data sets. WIREs Comput Stat 2013
 #' @keywords PCA MVA MFA STATIS
+#' @export
 #' @examples
 #' 
 #' 

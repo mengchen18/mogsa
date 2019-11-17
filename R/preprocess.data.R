@@ -61,7 +61,7 @@
     ss <- lapply(x, crossprod)
     cc <- sapply(ss, c)
     cc <- crossprod(cc)
-    svdc <- svd(cc)
+    svdc <- svd.solver(cc, nf = 1)
     alpha <- svdc$u[, 1] / sum(svdc$u[, 1])
     alpha <- w^2 * alpha
   }

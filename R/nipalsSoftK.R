@@ -2,7 +2,6 @@
 #' 
 #' An internal function called by \code{\link{mbpca}}.
 #' 
-#' 
 #' @param x The input matrix, rows are observations, columns are variables
 #' @param maxiter # of maximum interation the algorithm can run
 #' @param k The number (>=1) or proportion (<1) of variables want to keep.  It
@@ -18,6 +17,7 @@
 #' 
 #' \code{w} - the wegihts of block scores to construct the global score.
 #' @author Chen Meng
+#' @export
 #' @seealso \code{\link{msvd}}
 nipalsSoftK <-
 function(x, maxiter, k) {
@@ -25,7 +25,8 @@ function(x, maxiter, k) {
   if (length(k) < length(x))
     k <- rep(k, length.out = length(x))
   
-  t <- svd(do.call("cbind", x))$u[, 1]
+  # t <- svd(do.call("cbind", x))$u[, 1]
+  t <- svd.solver(do.call("cbind", x), nf = 1)$u
   
   regproj <- function(xb, t, k) { 
     pb <- t(xb) %*% t / c(t(t) %*% t)

@@ -34,10 +34,6 @@
 #' @param moa Logical; whether the output should be converted to an object of
 #' class \code{\link{moa-class}}
 #' @param verbose Logical; whether the process (# of PC) should be printed
-#' @param svd.solver A charater string could be one of c("svd", "fast.svd",
-#' "propack"). The default "fast.svd " has a good compromise between the
-#' robustness and speed. "propack" is the fastest but may failed to converge in
-#' practice.
 #' @param k.obs The absolute number (if k >= 1) or the proportion (if 0<k<1) of
 #' non-zero coefficients for the observations. Sparse factor scores for
 #' observation are used by sparse concordance analysis.  (New arguments from
@@ -75,9 +71,8 @@
 #' Joint Patterns Across Multiple Omics Data Sets. Journal of proteome
 #' research.
 #' @keywords multi-blcok PCA GCCA CPCA MCIA
+#' @export
 #' @examples
-#' 
-#' 
 #' data("NCI60_4arrays")
 #' tumorType <- sapply(strsplit(colnames(NCI60_4arrays$agilent), split="\\."), "[", 1)
 #' colcode <- as.factor(tumorType)
@@ -126,7 +121,8 @@
 mbpca <- 
   function (x, ncomp, method, k = "all", center = TRUE, 
     scale = FALSE, option = "uniform", maxiter = 1000, 
-    moa = TRUE, verbose = TRUE, svd.solver = c("svd", "fast.svd", "propack"),
+    moa = TRUE, verbose = TRUE, 
+    # svd.solver = c("svd", "fast.svd", "propack"),
     k.obs = "all", w = NA, w.obs = NA,
     unit.p = FALSE, unit.obs = FALSE, pos = FALSE) {
     
@@ -140,16 +136,17 @@ mbpca <-
     keepAllt <- k.obs[1] == "all"
     
     prddata <- lapply(x, t)
-    ssl <- match.arg(svd.solver[1], c("svd", "fast.svd", "propack"))
-    svdf <- switch(ssl, 
-                   "svd" = svd, 
-                   "fast.svd" = fast.svd, 
-                   "propack" = function(X) propack.svd(X, neig = 1, opts = list(kmax = 20)))
+    # ssl <- match.arg(svd.solver[1], c("svd", "fast.svd", "propack"))
+    # svdf <- switch(ssl, 
+    #                "svd" = svd, 
+    #                "fast.svd" = fast.svd, 
+    #                "propack" = function(X) propack.svd(X, neig = 1, opts = list(kmax = 20)))
     for (i in 1:ncomp) {
       if (verbose) 
         cat(paste("calculating component ", i, " ...\n", sep = ""))
       if (keepAllb & keepAllt) 
-        r <- msvd(x, svd.sol = svdf)
+        r <- msvd(x)
+        # r <- msvd(x, svd.sol = svdf)
       else {
         
         if (is.na(w)[1])

@@ -31,6 +31,7 @@
 #' @return It returns a matrix, columns are eigenvalues for different
 #' components. Each rows is a bootstramp sample.
 #' @author Chen Meng
+#' @export
 #' @examples
 #' 
 #' # see examples in \code{\link{mbpca}}

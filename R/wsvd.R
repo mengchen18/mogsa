@@ -31,6 +31,7 @@
 #' Singular Value Decomposition (GSVD)
 #' http://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf
 #' @keywords SVD generalized SVD weighted SVD
+#' @export
 #' @examples
 #' 
 #'     set.seed(56)

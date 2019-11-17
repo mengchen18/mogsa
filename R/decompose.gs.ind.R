@@ -32,6 +32,7 @@
 #' set.
 #' @author Chen Meng
 #' @seealso See Also as \code{\link{decompose.gs.group}}
+#' @export
 #' @references TBA
 #' @examples
 #' 

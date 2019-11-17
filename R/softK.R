@@ -12,6 +12,7 @@
 #' @author Chen Meng
 #' @keywords soft threshold soft thresholding weighted soft threshold weighted
 #' soft thresholding
+#' @export
 #' @examples
 #' 
 #' v <- rnorm(10)

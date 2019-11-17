@@ -19,9 +19,10 @@
 #' 
 #' \code{w} - the wegihts of block scores to construct the global scor
 #' @author Chen Meng
+#' @export
 #' @seealso \code{\link{nipalsSoftK}}
 msvd <-
-function(x, svd.sol=svd) {
+function(x, svd.sol=svd.solver) {
   nd <- length(x)
   nVar <- sapply(x, ncol)
   if (!is.null(names(x)))

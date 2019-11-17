@@ -3,6 +3,7 @@
 # ==                    the box.gs plot                                       ==
 # ==                                                                          ==
 # ==============================================================================
+#' @export
 box.gs <- function(x, gs, moa=NULL, col=1, layout=NULL, plot=TRUE, obs.order=NULL, ...) {
   # x - either mgsa or moa.sup
   if (inherits(x, "mgsa")) {

@@ -7,6 +7,7 @@
 #' @return A matrix of global score
 #' @author Chen Meng
 #' @seealso \code{\link{moaCoef}}
+#' @export
 #' @examples
 #' 
 #' # see examples in \code{\link{mbpca}}
@@ -52,6 +53,7 @@ moaScore <- function(moa) moa@fac.scr
 #' variable the second column is the coefficient/loading.
 #' @author Chen Meng
 #' @seealso \code{\link{moaScore}}
+#' @export
 #' @examples
 #' 
 #' # see examples in \code{\link{mbpca}}

@@ -45,6 +45,7 @@
 #' @author Chen Meng
 #' @seealso see \code{\link{annotate.gs}}
 #' @references TBA
+#' @export
 #' @examples
 #' 
 #' 	# library(mogsa)

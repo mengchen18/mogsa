@@ -31,6 +31,7 @@
 #' interference reveals that oncogenic KRAS-driven cancers require TBK1.
 #' Nature, 462(5):108-112, 2009.
 #' @keywords data projection supplementary data
+#' @export
 #' @examples
 #' 
 #'     # library(mogsa)

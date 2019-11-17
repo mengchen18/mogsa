@@ -40,6 +40,8 @@
 #' Maechler, M., Rousseeuw, P., Struyf, A., Hubert, M., Hornik, K.(2015).
 #' cluster: Cluster Analysis Basics and Extensions.  R package version 2.0.1.
 #' @keywords gap statistic moa
+#' @importFrom cluster clusGap
+#' @export
 #' @examples
 #' 
 #' # see examples in \code{\link{mbpca}}

@@ -13,6 +13,7 @@
 #' "inertia", the matrix is divided by its total inertia (sum of square), if
 #' "uniform", none of them would be done.
 #' @return A \code{list} of normalized matrix.
+#' @export
 #' @author Chen Meng
 processOpt <-
 function(x, center=TRUE, scale=FALSE, option = c("lambda1", "inertia", "uniform")) {
@@ -24,7 +25,7 @@ function(x, center=TRUE, scale=FALSE, option = c("lambda1", "inertia", "uniform"
 
   x <- lapply(x, scale, center, scale)
   if (opt == "lambda1") {
-    w <- sapply(x, function(xx) 1/svd(xx)$d[1])
+    w <- sapply(x, function(xx) 1/svd.solver(xx, nf = 1)$d)
   } else if (opt == "inertia") {
     w <- sapply(x, function(xx) 1/sqrt(sum(xx^2)))
   } else if (opt == "uniform") {

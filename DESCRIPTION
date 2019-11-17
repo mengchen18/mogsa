@@ -18,3 +18,4 @@ biocViews: GeneExpression, PrincipalComponent, StatisticalMethod, Clustering,
         Software
 NeedsCompilation: no
 RoxygenNote: 6.1.1
+Encoding: UTF-8

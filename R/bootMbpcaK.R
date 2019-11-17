@@ -22,6 +22,8 @@
 #' @param svd.solver passed to \code{\link{mbpca}}.
 #' @return A matrix of mbpca eigenvalues resulted from bootstrap samples
 #' @author Chen Meng
+#' @importFrom parallel mclapply
+#' @export
 #' @seealso \code{\link{bootMbpca}}
 bootMbpcaK <-
 function(data, replace, B=100, mc.cores=1, resample = c("sample", "total", "gene"), 

@@ -15,6 +15,7 @@
 #' @param p passed to function \code{dist}
 #' @return An object of class \code{dist}, see function "dist".
 #' @author Chen Meng
+#' @export
 #' @examples
 #' 
 #' # see examples in \code{\link{mbpca}}

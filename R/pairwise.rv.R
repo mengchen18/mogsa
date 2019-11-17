@@ -18,6 +18,7 @@
 #' Multivariate Statistical Methods: The RV-Coefficient. Applied Statistics 25
 #' (3): 257-265.
 #' @keywords RV coefficent
+#' @export
 #' @examples
 #' 
 #'     data(NCI60_4arrays)

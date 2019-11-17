@@ -30,6 +30,7 @@
 #' @return If assign to variable, A \code{list} of selected/highlighted gene
 #' set at the (positve and negative) end of each axis will be returned.
 #' @author Chen Meng
+#' @export
 #' @examples
 #' 
 #'   

@@ -19,6 +19,7 @@
 #' @seealso \code{\link{svd}}
 #' @return the same as svd, list of three components, d, u, v
 #' @importFrom corpcor fast.svd
+#' @export
 #' @examples 
 #' 
 #' #' a random matrix
@@ -90,7 +91,8 @@ softSVD <- function(x, nf = 1, kv = Inf, ku = Inf, wv = 1, wu = 1, pos = FALSE,
                     maxiter = 50, tol = sqrt(.Machine$double.eps), verbose = FALSE) {
   
   regproj <- function(x, ku, kv, wu, wv, pos, maxiter) {
-    u <- fast.svd(x)$u[, 1, drop = FALSE]
+    # u <- fast.svd(x)$u[, 1, drop = FALSE]
+    u <- svd.solver(x, nf = 1)$u
     for (i in 1:maxiter) {
       v <- crossprod(x, u)
       v <- softK(v, kv, w = wv, pos = pos)

@@ -21,6 +21,7 @@
 #' @return The function return the selected value in "mgsa".
 #' @author Chen Meng
 #' @references TBA
+#' @export
 #' @examples
 #' 
 #' 	# library(mogsa)

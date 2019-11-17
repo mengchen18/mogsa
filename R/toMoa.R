@@ -7,6 +7,7 @@
 #' @param x The object calculated in \code{\link{mbpca}}
 #' @param call The call of mbpca
 #' @return An object of \code{moa-class}.
+#' @export
 #' @author Chen Meng
 toMoa <-
 function(data, x, call) {

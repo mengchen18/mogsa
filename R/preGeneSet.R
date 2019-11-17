@@ -11,6 +11,7 @@
 #' @author Chen Meng
 #' @seealso See Also as \code{\link{prepGraphite}} and
 #' \code{\link{prepSupMoa}}.
+#' @export
 #' @examples
 #' 
 #' 	# not run
@@ -48,6 +49,7 @@ prepMsigDB <- function(file) {
 #' @references Sales G, Calura E and Romualdi C (2014). graphite: GRAPH
 #' Interaction from pathway Topological Environment. R package version 1.10.1.
 #' @keywords pahtways graphite
+#' @export
 #' @examples
 #' 
 #'   library(graphite)

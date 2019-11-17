@@ -17,6 +17,7 @@
 #' @note Called by the wsvd function.
 #' @author Chen Meng
 #' @seealso See Also \code{\link{wsvd}}
+#' @export
 #' @examples
 #' 
 #'   set.seed(56)

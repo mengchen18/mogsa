@@ -49,6 +49,7 @@
 #' 2012. Volume 4, Issue 2, pages 124-167 Herve Abdi, Lynne J. Williams,
 #' Domininique Valentin. Multiple factor analysis: principal component analysis
 #' for multitable and multiblock data sets. WIREs Comput Stat 2013
+#' @export
 #' @examples
 #' 
 #'   # see function moa
