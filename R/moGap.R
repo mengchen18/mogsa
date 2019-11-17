@@ -41,6 +41,7 @@
 #' cluster: Cluster Analysis Basics and Extensions.  R package version 2.0.1.
 #' @keywords gap statistic moa
 #' @importFrom cluster clusGap
+#' @importFrom cluster maxSE
 #' @export
 #' @examples
 #' 
