@@ -1,56 +1,54 @@
+#' plot moa object
+#' @export
+#' @details 
 # plot.moa
-
-# value options:
-#   eig - plot the eigen values
-#     ... could be:
-#       type=1 - the type of plot
-#       axes=NULL - the axes selected to plot
-#       n=NULL - n eigenvalues to be drawn
-#       tol=1e-5 - the tolerance of eigenvalue, eigenvalues lower than this value wont be considered.
-#       legend=NULL - legend to put
-#       col=NULL - the color of each partial eigenvalue
-#       lty=1 - the line type used in the matplot, when type =4, used
-#       pch=NULL - the pch to draw 2D partial eigen plot, when type = 5 used
-#       lg.x="topright" - the position of legend
-#       lg.y=NULL - poistion argument passed to legend(...)
-#       ... - other arguemnts passed to functions, see below
-
-#     for:
-#       type 1: the eigen value
-#         ... are passed to barplot
-#       type 2: barplot show, partial eigenvalue, beside=FALSE
-#         ... are passed to barplot
-#       type 3: barplot show, partial eigenvalue, beside =TRUE
-#         ... are passed to barplot
-#       type 4: matplot show
-#         ... are passed to matplot
-#       type 5: the two dimensional plot, axes need to be specified
-#         ... are passed to heatmap
-  
-#   tau - the same with eig, but in the percentage view
-#     ... could be (same with eig, but in the percentage)
-
-#   obs - the observation
-#     ... could be:
-#       axes=1:2 - which axes should be draw
-#       type=1 - which type, see below
-#       data.pch=20 - the pch of dataset, if type=1, the first one is used
-#       col=1 - the color of observations, recycled used by data.frame
-#       label=FALSE - should be labeled?
-#       lg.x="topright" - position of legend
-#       lg.y=NULL - position of legend
-#       xlim=NULL - the xlimit
-#       ylim=NULL - the ylimit
-#       label.cex=1 - the cex of text
-#       ...
-    
-#     for:
-#       type 1: the center points draw
-#         ... passed to points
-#       type 2: the separate factor scores linked by lines
-#         ... passed to points
-#   var - the separate gene view, layout can be specified
-#   RV - the heatmap of RV coefficient
+#' value options:
+#'   eig - plot the eigen values
+#'     ... could be:
+#'       type=1 - the type of plot
+#'       axes=NULL - the axes selected to plot
+#'       n=NULL - n eigenvalues to be drawn
+#'       tol=1e-5 - the tolerance of eigenvalue, eigenvalues lower than this value wont be considered.
+#'       legend=NULL - legend to put
+#'       col=NULL - the color of each partial eigenvalue
+#'       lty=1 - the line type used in the matplot, when type =4, used
+#'       pch=NULL - the pch to draw 2D partial eigen plot, when type = 5 used
+#'       lg.x="topright" - the position of legend
+#'       lg.y=NULL - poistion argument passed to legend(...)
+#'       ... - other arguemnts passed to functions, see below
+#'     for:
+#'       type 1: the eigen value
+#'         ... are passed to barplot
+#'       type 2: barplot show, partial eigenvalue, beside=FALSE
+#'         ... are passed to barplot
+#'       type 3: barplot show, partial eigenvalue, beside =TRUE
+#'         ... are passed to barplot
+#'       type 4: matplot show
+#'         ... are passed to matplot
+#'       type 5: the two dimensional plot, axes need to be specified
+#'         ... are passed to heatmap 
+#'   tau - the same with eig, but in the percentage view
+#'     ... could be (same with eig, but in the percentage)
+#'   obs - the observation
+#'     ... could be:
+#'       axes=1:2 - which axes should be draw
+#'       type=1 - which type, see below
+#'       data.pch=20 - the pch of dataset, if type=1, the first one is used
+#'       col=1 - the color of observations, recycled used by data.frame
+#'       label=FALSE - should be labeled?
+#'       lg.x="topright" - position of legend
+#'       lg.y=NULL - position of legend
+#'       xlim=NULL - the xlimit
+#'       ylim=NULL - the ylimit
+#'       label.cex=1 - the cex of text
+#'       ...  
+#'     for:
+#'       type 1: the center points draw
+#'         ... passed to points
+#'       type 2: the separate factor scores linked by lines
+#'         ... passed to points
+#'   var - the separate gene view, layout can be specified
+#'   RV - the heatmap of RV coefficient
 
 setMethod("plot", signature=c("moa", "missing"), function(x, value, type=1,
   axes=NULL, n=NULL, tol=1e-5, legend=NULL, col=NULL, lty=1, 
