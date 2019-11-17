@@ -1,3 +1,23 @@
+#' Conver gmt format file to a list
+#' 
+#' Convert a gmt file (Could be downloaded from MSigDB) to a list of gene sets
+#' information.
+#' 
+#' 
+#' @param file The directory and file name of the gmt file.
+#' @return This function returns an object of list containing gene set
+#' information, which could be further processed by function "prepSupMoa" to
+#' convert to the object that can be used as input of "sup.moa" or "mogsa".
+#' @author Chen Meng
+#' @seealso See Also as \code{\link{prepGraphite}} and
+#' \code{\link{prepSupMoa}}.
+#' @examples
+#' 
+#' 	# not run
+#' 	dir <- system.file(package = "mogsa")
+#' 	preGS <- prepMsigDB(file=paste(dir, 
+#' 		"/extdata/example_msigdb_data.gmt.gz", sep = ""))
+#' 
 prepMsigDB <- function(file) {
   gmt <- readLines(file)
   gmt <- lapply(gmt, strsplit, split="\t")
@@ -8,6 +28,31 @@ prepMsigDB <- function(file) {
   return(gs)
 }
 
+
+
+#' Prepare pathway gene sets from graphite package
+#' 
+#' Prepare pathway gene sets from "graphite" package, which could be passed to
+#' "prepSupMoa" function.
+#' 
+#' Only support "entrez" or "symbol" output currently.
+#' 
+#' @param db The database to be used, an object of class either 'PathwayList'
+#' create by "pathways" function.
+#' @param id Which identifier for output, either "entrez" or "symbol".
+#' @return This function returns an object of list containing gene set
+#' information, which could be further processed by function "prepSupMoa" to
+#' convert to the object that can be used as input of "sup.moa" or "mogsa".
+#' @author Chen Meng
+#' @seealso See Also as \code{\link{prepMsigDB}} and \code{\link{prepSupMoa}}.
+#' @references Sales G, Calura E and Romualdi C (2014). graphite: GRAPH
+#' Interaction from pathway Topological Environment. R package version 1.10.1.
+#' @keywords pahtways graphite
+#' @examples
+#' 
+#'   library(graphite)
+#'   keggdb <- prepGraphite(db = pathways("hsapiens", "kegg")[1:3], id = "entrez")
+#' 
 prepGraphite <- function(db, id = c("entrez", "symbol")) {
 
   if (!inherits(db, c("PathwayList")))
@@ -47,6 +92,41 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
 }
 
 
+
+
+#' Prepare sumpplementary tables for projection by sup.moa or mogsa.
+#' 
+#' Convert a list of gene set information to a set of sumpplementary tables
+#' that can be used as input of function "sup.moa" or "mogsa".
+#' 
+#' Details here
+#' 
+#' @param X A matrix/data.frame or a list of matrix/data.frame or a list of
+#' character vector. If it is a list of matrix/data.frame, row names of
+#' matrix/data.frame will be used to create the projection matrix. Otherwise
+#' the charater vectors will used to create the supplementary matirx.
+#' @param geneSets Gene sets list or an object of class "GeneSet" or
+#' "GeneSetCollection".  A gene set list could be returned by prepGraphite or
+#' prepMolsigDB.
+#' @param minMatch The minimum match of geneset.
+#' @param maxMatch The maximum match genesets.
+#' @return A list of matrix could used as supplementary tables by "sup.moa" or
+#' "mogsa".
+#' @author Chen Meng
+#' @seealso See Also as \code{\link{prepGraphite}} and
+#' \code{\link{prepMsigDB}}.
+#' @examples
+#' 
+#'   library(graphite)
+#'   data(NCI60_4arrays)
+#'   kegg <- pathways(species = "hsapiens", "kegg")
+#'   pw <- c("Purine metabolism", "Endocrine resistance", "MAPK signaling pathway")
+#'   gss <- prepGraphite(db = kegg[pw], id="symbol")
+#'   gss <- lapply(gss, function(x) sub("SYMBOL:", "", x))
+#'   sup_data1 <- prepSupMoa(NCI60_4arrays, geneSets=gss)
+#'   gene_list <- lapply(NCI60_4arrays, rownames)
+#'   sup_data2 <- prepSupMoa(gene_list, geneSets=gss)
+#' 
 prepSupMoa <- function (X, geneSets, minMatch=10, maxMatch=500) {
   
   if (inherits(geneSets, "GeneSet")) {

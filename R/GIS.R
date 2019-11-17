@@ -1,3 +1,69 @@
+#' calculate gene influential scores of genes in a gene set.
+#' 
+#' Calculate the gene influential score of individual feature to the overall
+#' variance of GS score.  Using a leave-one-out procedure (See detail).
+#' 
+#' The evaluation of the importance of a single feature is calculated in the
+#' supervised or unsupervised manner.
+#' 
+#' In the unsupervise manner, the value is calculated by:
+#' 
+#' log2(var(GS_-i)/var(GS))
+#' 
+#' where GS is the gene set score, and the GS_-i is a recalculate of gene set
+#' score without i'th feature. var() is the variance.
+#' 
+#' In the supervised manner, the value is caluclated as the F-ratio over a
+#' class vector:
+#' 
+#' log2(F(GS_-i)/F(GS))
+#' 
+#' Where F() is the calculation of F-ratio. The unsupervised GIS is encouraged
+#' since it works better for most of the cases in practice.
+#' 
+#' @param x An object of class \code{\link{mgsa-class}}.
+#' @param geneSet A charater string or number to indicated the gene sets under
+#' conserderation.
+#' @param nf The number of PCs used in the caluculation of gene set scores.
+#' The default is NA, which means using all the PCs in the mogsa. This should
+#' work for most of the cases.
+#' @param barcol The color of the bars, which is used to distinguish
+#' features/genes from different datasets, so its length should be the same as
+#' the number of data sets.
+#' @param topN An positive integer specify the number of top influencers that
+#' should to returned.
+#' @param plot A logical indicate if the result should be plotted.
+#' @param Fvalue A logical indicate if the GIS should be calculated in a
+#' supervised manner.
+#' @param ff The vector indicates the group of columns for calculating the
+#' F-ratio when Fvalue=TRUE.
+#' @param cor A logical indicates whether use correlation between reconstructed
+#' expression with GSS.  This is faster than the standard GIS.
+#' @return An object of class \code{data.frame} contains three columns. The
+#' first column is the feature name, the second columns is the gene influential
+#' score. The third columns indicates from where the feature/gene is selected.
+#' @author Chen Meng
+#' @seealso see \code{\link{annotate.gs}}
+#' @references TBA
+#' @examples
+#' 
+#' 	# library(mogsa)
+#' 	# loading gene expression data and supplementary data
+#' 	data(NCI60_4array_supdata)
+#' 	data(NCI60_4arrays)
+#' 	mgsa <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
+#' 	              proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+#' 	allgs <- colnames(NCI60_4array_supdata[[1]])
+#' 
+#' 	# unsupervised measurement
+#' 	GIS(mgsa, allgs[1], topN = 5)
+#' 
+#' 	# supervised measurement
+#' 	tissueType <- as.factor(sapply(strsplit(colnames(NCI60_4arrays$agilent), split="\\."), "[", 1))
+#' 	GIS(mgsa, allgs[1], topN = 5, Fvalue = TRUE, ff = tissueType)
+#' 	# more PCs to calcualte
+#' 	GIS(mgsa, allgs[1], nf = 20, topN = 5, Fvalue = TRUE, ff = tissueType)
+#' 
 GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, ff=NA, cor=FALSE) {
   
   if (!inherits(x, "mgsa"))
@@ -80,6 +146,35 @@ GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, 
 }
 
 
+
+
+#' Summary annotation information of a gene set
+#' 
+#' Retrive variables/features (genes) mapped to the annotated data sets in a
+#' gene set. Also returns the the information about presence and absence of a
+#' feature for a specific data set.
+#' 
+#' 
+#' @param mgsa An object of class \code{\link{mgsa-class}} or
+#' \code{\link{moa.sup-class}}.
+#' @param gs The name of a geneset
+#' @return This function returns a data.frame.  The first column shows the name
+#' of features.  The last column is for the count of how many data sets has the
+#' corresponding features. Columns in the middle contains logical value
+#' indicating whether a feature is presented in a particular data set.
+#' @author Chen Meng
+#' @seealso see \code{\link{GIS}}
+#' @examples
+#' 
+#'   # library(mogsa)
+#'   # loading gene expression data and supplementary data
+#'   data(NCI60_4array_supdata)
+#'   data(NCI60_4arrays)
+#'   mgsa <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
+#'                 proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+#'   allgs <- colnames(NCI60_4array_supdata[[1]])
+#'   annotate.gs(mgsa, allgs[1])
+#' 
 annotate.gs <- function(mgsa, gs) {
   if (length(gs) > 1)
     stop("gs has to be an one element character string or integer")

@@ -1,3 +1,22 @@
+#' Soft-thresholding operator
+#' 
+#' Weighted soft-thresholding operator, which is called by \code{\link{mbpca}}.
+#' 
+#' 
+#' @param x A numerical vector
+#' @param k Number of non-zero elements want to keep
+#' @param w weight for each element. The actual thresholding is base on x*w,
+#' the default setting equals to ordinary soft thresholding.
+#' @param pos A logical value, if only positive values are retained.
+#' @return A thresholded numerical vector
+#' @author Chen Meng
+#' @keywords soft threshold soft thresholding weighted soft threshold weighted
+#' soft thresholding
+#' @examples
+#' 
+#' v <- rnorm(10)
+#' softK(v, k = 2)
+#' 
 softK <- function(x, k, w = 1, pos = FALSE) {
   if (k <= 0)
     stop("k should be postive integers or (0, 1)")

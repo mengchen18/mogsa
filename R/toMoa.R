@@ -1,3 +1,13 @@
+#' convert \code{\link{mbpca}} result to \code{\link{moa-class}}
+#' 
+#' An internal function called by \code{\link{mbpca}}.
+#' 
+#' 
+#' @param data The preprocessed data in \code{\link{mbpca}}
+#' @param x The object calculated in \code{\link{mbpca}}
+#' @param call The call of mbpca
+#' @return An object of \code{moa-class}.
+#' @author Chen Meng
 toMoa <-
 function(data, x, call) {
   

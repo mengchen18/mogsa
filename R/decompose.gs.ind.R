@@ -1,3 +1,53 @@
+#' Data-wise or PC-wise decomposition of gene set scores for a single
+#' observation.
+#' 
+#' Barplot of decomposed gene set scores, either with respect to datasets or
+#' axes.
+#' 
+#' type=1 (the data-pc mode), the axes/PCs are represented as the narrow bars
+#' with different colors and the background wide bars behind narrow bars are
+#' gene set scores for datasets, which is calculated from the sum of all
+#' underlying individual axes/PC scores.  When type=2 (the pc-data mode) the
+#' interpreation of narrow and wide bars are in the other way around. If
+#' type=3, both are shown.
+#' 
+#' This function could only be used to check the decomposition of gene set
+#' scores of a single observation. So the function is not efficent when the
+#' number of observation is large. Another function
+#' \code{\link{decompose.gs.group}}, could be used in this case, particularly
+#' when the cluster information of the observation panel is available.
+#' 
+#' @param x An object of class \code{\link{mgsa-class}} or
+#' \code{\link{moa.sup-class}}
+#' @param gs The gene set want to exam.
+#' @param obs The observations want to exam.
+#' @param type Which type of plot.  type=1 - the data-pc mode; type=2 - the
+#' pc-data mode; type=3 - both. See detail.
+#' @param nf The number of axes/PCs to be calculated and plotted.
+#' @param plot A logical indicates if a plot should be drawn
+#' @param col.data The bar color of datasets
+#' @param col.pc The bar color of PCs
+#' @param legend A logical if legend should be shown
+#' @return Return nothing or a matrix depends on how argument \code{plot} is
+#' set.
+#' @author Chen Meng
+#' @seealso See Also as \code{\link{decompose.gs.group}}
+#' @references TBA
+#' @examples
+#' 
+#'   # library(mogsa)
+#'   # loading gene expression data and supplementary data
+#'   data(NCI60_4array_supdata)
+#'   data(NCI60_4arrays)
+#'   mgsa <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
+#'                 proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+#' 
+#'   allgs <- colnames(NCI60_4array_supdata[[1]])
+#'   # plot
+#'   decompose.gs.ind(x=mgsa, gs=allgs[5], obs="BR.MDA_MB_231", type=2, nf=5)
+#'   # or
+#'   decompose.gs.ind(x=getmgsa(mgsa, "sup"), gs=allgs[5], obs="BR.MDA_MB_231", type=3, nf=5)
+#' 
 decompose.gs.ind <- function(x, gs, obs, type=3, nf=2, plot=TRUE,
                    col.data=NULL, col.pc=NULL, legend=TRUE) {
   
@@ -44,6 +94,46 @@ decompose.gs.ind <- function(x, gs, obs, type=3, nf=2, plot=TRUE,
 # ==                    the box.gs plot                                       ==
 # ==                                                                          ==
 # ==============================================================================
+
+
+#' boxplot of gene set variables across all samples.
+#' 
+#' boxplot to show the variables (e.g. gene expression) of a gene set across
+#' all samples.
+#' 
+#' This is a convenient function used to explore the expression of a set of
+#' features/genes
+#' 
+#' @param x An object of calss \code{\link{mgsa-class}} or
+#' \code{\link{moa.sup-class}}
+#' @param gs Gene set want to be explored
+#' @param moa An obejct of class \code{\link{moa}}. It is required if x is an
+#' object of class \code{\link{moa.sup-class}}
+#' @param col The coler code for samples
+#' @param layout The layout control, see examples.
+#' @param plot A logical indicates whether the result should be ploted. If
+#' FALSE, a list of expression matrix of the gene set genes is returned.
+#' Otherwise nothing returned.
+#' @param obs.order Can be used to reorder the martrix, could be used when
+#' clustering result is available.
+#' @param \dots The arguments passed to \code{\link{boxplot}}
+#' @return Do not return anything (plot=TRUE) or return a list of matrix
+#' (plot=FALSE) depends on plot arugment.
+#' @author Chen meng
+#' @examples
+#' 
+#'   # library(mogsa)
+#'   # loading gene expression data and supplementary data
+#'   data(NCI60_4array_supdata)
+#'   data(NCI60_4arrays)
+#'   mgsa <- mogsa(x = NCI60_4arrays, sup=NCI60_4array_supdata, nf=9,
+#'                 proc.row = "center_ssq1", w.data = "inertia", statis = TRUE)
+#' 
+#'   allgs <- colnames(NCI60_4array_supdata[[1]])
+#'   colcode <- as.factor(sapply(strsplit(colnames(NCI60_4arrays$agilent), split="\\."), "[", 1))
+#'   a <- box.gs.feature(x=mgsa, gs=allgs[5], type=3, col=colcode, plot=FALSE)
+#'   box.gs.feature(x=mgsa, gs=allgs[5], type=3, col=colcode, plot=TRUE, layout=matrix(1:4, 2, 2))
+#' 
 box.gs.feature <- function(x, gs, moa=NULL, col=1, layout=NULL, plot=TRUE, obs.order=NULL, ...) {
   # x - either mgsa or moa.sup
   if (inherits(x, "mgsa")) {

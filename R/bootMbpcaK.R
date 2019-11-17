@@ -1,3 +1,28 @@
+#' An internal function called by \code{\link{bootMbpca}}.
+#' 
+#' An internal function called by \code{\link{bootMbpca}}.
+#' 
+#' 
+#' @param data A \code{list} of \code{matrix} to bootstrap.
+#' @param replace A logical variable to indicate sampling with or without
+#' replacement
+#' @param B Integer; number of bootstrap.
+#' @param mc.cores Integer; number of cores used in bootstrap. This value is
+#' passed to function mclapply
+#' @param resample Could be one of "sample", "gene" or "total". "sample" and
+#' "gene" means sample-wise and variable-wise resampling, repectively. "total"
+#' means total resampling.
+#' @param ncomp passed to \code{\link{mbpca}}.
+#' @param method passed to \code{\link{mbpca}}.
+#' @param k passed to \code{\link{mbpca}}.
+#' @param center passed to \code{\link{mbpca}}.
+#' @param scale passed to \code{\link{mbpca}}.
+#' @param option passed to \code{\link{mbpca}}.
+#' @param maxiter passed to \code{\link{mbpca}}.
+#' @param svd.solver passed to \code{\link{mbpca}}.
+#' @return A matrix of mbpca eigenvalues resulted from bootstrap samples
+#' @author Chen Meng
+#' @seealso \code{\link{bootMbpca}}
 bootMbpcaK <-
 function(data, replace, B=100, mc.cores=1, resample = c("sample", "total", "gene"), 
                        ncomp, method, k, 
