@@ -166,6 +166,7 @@ GIS <- function(x, geneSet, nf=NA, barcol=NA, topN=NA, plot=TRUE, Fvalue=FALSE, 
 #' indicating whether a feature is presented in a particular data set.
 #' @author Chen Meng
 #' @seealso see \code{\link{GIS}}
+#' @exprt
 #' @examples
 #' 
 #'   # library(mogsa)
