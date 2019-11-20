@@ -1,4 +1,3 @@
-#' @export
 concord0 <- function(x, y, ncomp=2, dmod = 1, center = TRUE, scale = FALSE, option = "uniform", 
                     kx = "all", ky = "all", wx = 1, wy = 1, pos = FALSE) {
   

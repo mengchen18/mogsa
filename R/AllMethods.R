@@ -1,4 +1,28 @@
 #' plot moa object
+#' @param x an moa object
+#' @param value which value to be plotted, see details
+#' @param type which type of plot to be plotted, see details
+#' @param axes which axes to be plotted
+#' @param n Numbe of eigenvalues to shown
+#' @param tol Only eigenvalues greater than the tol will be plotted
+#' @param legend legend
+#' @param col color
+#' @param lty line type
+#' @param pch point shape
+#' @param lg.x legend position x
+#' @param lg.y legend position y
+#' @param xlim coordinate limit of x axis
+#' @param ylim coordinate limit of y axis
+#' @param data.pch the pch (shape) used to distinguish shapes
+#' @param label point label 
+#' @param label.cex size of labels
+#' @param layout layout passed to par()
+#' @param ... other parameters
+#' @importFrom graphics abline barplot boxplot layout legend lines matplot points segments text
+#' @importFrom grDevices gray.colors heat.colors
+#' @importFrom methods new slot
+#' @importFrom stats cutree dist hclust heatmap kmeans p.adjust pnorm sd
+#' @rdname moa-class
 #' @export
 #' @details 
 # plot.moa

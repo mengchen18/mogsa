@@ -17,9 +17,9 @@ if fast.svd or svd function is used.}
 
 \item{opts.svds}{A list of named parameters passed to \code{\link[RSpectra]{svds}}}
 
-\item{opts.svd.fast.svd}{A list of named parameters passed to \code{\link[corpcor]{fast.svd}}}
+\item{opts.fast.svd}{A list of named parameters passed to \code{\link[corpcor]{fast.svd}}}
 
-\item{opts.svd.svd}{A list of named parameters passed to \code{\link[base]{svd}}}
+\item{opts.svd}{A list of named parameters passed to \code{\link[base]{svd}}}
 }
 \description{
 different methods are automatically selected to calculate svd

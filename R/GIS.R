@@ -45,6 +45,7 @@
 #' @author Chen Meng
 #' @seealso see \code{\link{annotate.gs}}
 #' @references TBA
+#' @importFrom genefilter rowFtests
 #' @export
 #' @examples
 #' 

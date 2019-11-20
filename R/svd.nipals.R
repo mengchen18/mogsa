@@ -48,8 +48,8 @@ svd.nipals <- function(x, nf, ... ) {
 #'   if fast.svd or svd function is used. 
 #' @param opts.svd.nipals A list of named parameters passed to \code{\link{svd.nipals}}
 #' @param opts.svds A list of named parameters passed to \code{\link[RSpectra]{svds}}
-#' @param opts.svd.fast.svd A list of named parameters passed to \code{\link[corpcor]{fast.svd}}
-#' @param opts.svd.svd A list of named parameters passed to \code{\link[base]{svd}}
+#' @param opts.fast.svd A list of named parameters passed to \code{\link[corpcor]{fast.svd}}
+#' @param opts.svd A list of named parameters passed to \code{\link[base]{svd}}
 #' @details There are 4 different options could be used:
 #'   1. \code{\link{svd.nipals}} When there are missing values in the matrix
 #'   2. \code{\link[RSpectra]{svds}} when x is an object of class \code{Matrix} or only a small 
@@ -98,23 +98,23 @@ svd.solver <- function(
   if (any(is.na(x))) {
     r <- do.call(svd.nipals, c(list(x=x, nf = nf), opts.svd.nipals))
     solver <- "svd.nipals"
-    cat("svd.nipals used. \n" )
+    # cat("svd.nipals used. \n" )
   } else if (inherits(x, "Matrix") || smallnf) {
     r <- do.call(svds, c(list(A=x, k= nf), opts.svds))
     solver <- "svds"
-    cat("svds used. \n" )
+    # cat("svds used. \n" )
   } else if (length(x) >= 1e6 & abs(log10(rt)) >= 1) {
     if (!miss.nf)
       message("function 'fast.svd' used, all singular vectors will be computed")
     r <- do.call(fast.svd, c(list(m=x), opts.fast.svd))
     solver <- "fast.svd"
-    cat("fast.svd used. \n" )
+    # cat("fast.svd used. \n" )
   } else {
     if (!miss.nf)
       message("Function 'svd' used, all singular vectors will be computed")
     r <- do.call(svd, c(list(x=x), opts.svd))
     solver <- "svd"
-    cat("svd used. \n" )
+    # cat("svd used. \n" )
   }
   attr(r, "solver") <- solver
   r
