@@ -117,6 +117,7 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
 #' @author Chen Meng
 #' @seealso See Also as \code{\link{prepGraphite}} and
 #' \code{\link{prepMsigDB}}.
+#' @export
 #' @examples
 #' 
 #'   library(graphite)
