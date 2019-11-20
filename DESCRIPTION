@@ -11,7 +11,7 @@ License: GPL-2
 Depends: R (>= 3.4.0)
 Imports: methods, graphite, genefilter, BiocGenerics, gplots, GSEABase,
         Biobase, parallel, corpcor, svd, cluster, grDevices, graphics, 
-        stats, utils
+        stats, utils, Matrix, RSpectra, nipals, matrixStats
 VignetteBuilder: knitr
 Suggests: BiocStyle, knitr, org.Hs.eg.db
 biocViews: GeneExpression, PrincipalComponent, StatisticalMethod, Clustering,

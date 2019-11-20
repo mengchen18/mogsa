@@ -73,7 +73,7 @@ colcode <- as.character(colcode)
 Then we can apply the moCluster algorithm to clustering the 60 cell lines. The moCluster employs consensus PCA (CPCA) approach to integrate multiple omics data. CPCA approach is particularly suitable for the integrative clustering algorithm. The First, we call \Rfunction{mbpca} to perform the consensus PCA:
 <<mbpca1, fig.cap="The variance associated with each latent variable. Colors distinguishes the contributions from different data sets.">>=
 moa <- mbpca(NCI60_4arrays, ncomp = 10, k = "all", method = "globalScore", option = "lambda1", 
-             center=TRUE, scale=FALSE, moa = TRUE, svd.solver = "fast", maxiter = 1000)
+             center=TRUE, scale=FALSE, moa = TRUE, maxiter = 1000)
 plot(moa, value="eig", type=2)
 @
 In the above commands, the argument \Rcode{ncomp = 10} specifies that 10 latent variables should be calculated. The argument \Rcode{k = "all"} suggest that no sparsity should be introduced to the loading factor. Sparsity in loading factor is a preferred property in multiple omics data analysis since only a subset of the variables would associated with the latent variables. Therefore, the interpret ability is increased. However, we do not introduce the sparsity for two reasons. First, we want to evaluate the relative contribution of variance as show in the figure. Second, we will use the permutation test to evaluate the latent variables that are representing the concordant structures in different data sets. This can be done with a permutation test, that is, permute the samples in each of the data and do the multi-block PCA:
@@ -83,7 +83,7 @@ r <- bootMbpca(moa, mc.cores = 1, B=20, replace = FALSE, resample = "sample")
 The result suggested that the top 3 latent variables account for concordance structures across data data. The elbow test also shows that the top 3 variables are significant. Therefore, we will use 3 latent variable in the subsequent analysis. Next, we are ready to calculate the latent variables with the parse loadings:
 <<mpbca2>>=
 moas <- mbpca(NCI60_4arrays, ncomp = 3, k = 0.1, method = "globalScore", option = "lambda1", 
-              center=TRUE, scale=FALSE, moa = TRUE, svd.solver = "fast", maxiter = 1000)
+              center=TRUE, scale=FALSE, moa = TRUE, maxiter = 1000)
 @
 \Rcode{k = 0.1} indicates we only keep 10\% variables with non-zero coefficients in the result. The cluster will be perform using the latent variable, which could be extract by \Rfunction{moaScore}. We first extract the latent variables for both the sparse and non-sparse loading results. Then compare their correlation. 
 <<scoreCor>>=

@@ -31,6 +31,7 @@
 #' interference reveals that oncogenic KRAS-driven cancers require TBK1.
 #' Nature, 462(5):108-112, 2009.
 #' @keywords data projection supplementary data
+#' @importFrom matrixStats rowMins
 #' @export
 #' @examples
 #' 
@@ -159,7 +160,7 @@ sup.moa <- function(X, sup, nf = 2, factors = NULL,
     sum_sd <- sf * sd(x)/sqrt(n) * n
     sum_mean <- mean(x) * n
     pp <- abs(pnorm(score, mean = sum_mean, sd = sum_sd))
-    2 * rowMin(cbind(pp, 1-pp))
+    2 * rowMins(cbind(pp, 1-pp))
   }
   # reconstuct matrix using nf PCs
   U <- as.matrix(X@loading[, factors, drop=FALSE]) 

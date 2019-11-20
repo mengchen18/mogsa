@@ -1,3 +1,6 @@
+CHANGES IN VERSION 1.21.0
+Support matrix object from Matrix package
+
 CHANGES IN VERSION 1.9.6
 Corrected a bug in msvd: if the name of input list is not alphabet order, the result will lead to an error in mbpca
 
