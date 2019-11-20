@@ -27,6 +27,7 @@
 #' @author Chen Meng
 #' @seealso See Also \code{\link{decompose.gs.ind}}
 #' @references TBA
+#' @importFrom matrixStats rowSds
 #' @export
 #' @examples
 #' 
