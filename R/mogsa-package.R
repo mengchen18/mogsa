@@ -1,4 +1,4 @@
-
+utils::globalVariables(c("convertIdentifiers", "nodes"))
 
 #' Combine two objects of class \code{mgsa} into one.
 #' 

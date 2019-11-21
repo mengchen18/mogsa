@@ -46,7 +46,8 @@ attr(decomp, "solver")
 
 decomp <- svd.solver(m[1:200, ])
 attr(decomp, "solver")
-
+\dontrun{
+library(Matrix) 
 ms <- Matrix(m, sparse=TRUE)
 decomp <- svd.solver(ms, nf = 2)
 attr(decomp, "solver")
@@ -63,6 +64,7 @@ attr(decomp, "solver")
 mnas <- Matrix(mna, sparse = TRUE)
 decomp <- svd.solver(mnas, nf = 2)
 attr(decomp, "solver")
+}
 }
 \author{
 Chen Meng

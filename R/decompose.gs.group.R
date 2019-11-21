@@ -28,6 +28,7 @@
 #' @seealso See Also \code{\link{decompose.gs.ind}}
 #' @references TBA
 #' @importFrom matrixStats rowSds
+#' @importFrom gplots barplot2
 #' @export
 #' @examples
 #' 

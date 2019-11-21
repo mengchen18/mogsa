@@ -26,17 +26,20 @@ The function may be faster when x is a sparseMatrix object and
 \examples{
 # small matrix
 m <- matrix(rnorm(200), 20, 10)
-s <- svd.niplas(m)
+s <- svd.nipals(m)
 
 # large sparse matrix
+\dontrun{
+library(Matrix)
 m <- matrix(sample(c(rnorm(10000), rep(0, 9990000))), 10000, 1000)
 ms <- Matrix(m, sparse=TRUE)
 system.time(
   s1 <- svd(m)
 )
 system.time(
-  s2 <- svd.niplas(ms, nf = 1)
+  s2 <- svd.nipals(ms, nf = 1)
 ) 
+}
 
 }
 \seealso{

@@ -1,4 +1,5 @@
 #' @importFrom BiocGenerics combine 
+#' @export
 setMethod(f = "combine", 
           signature = c("mgsa", "mgsa"), 
           definition = function(x, y, ...) {

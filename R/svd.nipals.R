@@ -15,17 +15,20 @@
 #' @examples 
 #' # small matrix
 #' m <- matrix(rnorm(200), 20, 10)
-#' s <- svd.niplas(m)
+#' s <- svd.nipals(m)
 #' 
 #' # large sparse matrix
+#' \dontrun{
+#' library(Matrix)
 #' m <- matrix(sample(c(rnorm(10000), rep(0, 9990000))), 10000, 1000)
 #' ms <- Matrix(m, sparse=TRUE)
 #' system.time(
 #'   s1 <- svd(m)
 #' )
 #' system.time(
-#'   s2 <- svd.niplas(ms, nf = 1)
+#'   s2 <- svd.nipals(ms, nf = 1)
 #' ) 
+#' }
 #' 
 svd.nipals <- function(x, nf, ... ) {
   if (missing(nf))
@@ -68,7 +71,8 @@ svd.nipals <- function(x, nf, ... ) {
 #' 
 #' decomp <- svd.solver(m[1:200, ])
 #' attr(decomp, "solver")
-#' 
+#' \dontrun{
+#' library(Matrix) 
 #' ms <- Matrix(m, sparse=TRUE)
 #' decomp <- svd.solver(ms, nf = 2)
 #' attr(decomp, "solver")
@@ -85,6 +89,7 @@ svd.nipals <- function(x, nf, ... ) {
 #' mnas <- Matrix(mna, sparse = TRUE)
 #' decomp <- svd.solver(mnas, nf = 2)
 #' attr(decomp, "solver")
+#' }
 
 svd.solver <- function(
   x, nf, opts.svd.nipals=list(), opts.svds=list(), opts.fast.svd = list(), opts.svd=list()
