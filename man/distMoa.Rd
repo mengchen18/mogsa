@@ -5,8 +5,15 @@
 \title{Calculate the distance matrix from an object of class
 \code{\link{moa-class}}.}
 \usage{
-distMoa(x, nf = NA, tol = 1e-05, method = "euclidean",
-  diag = FALSE, upper = FALSE, p = 2)
+distMoa(
+  x,
+  nf = NA,
+  tol = 1e-05,
+  method = "euclidean",
+  diag = FALSE,
+  upper = FALSE,
+  p = 2
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{moa-class}}.}

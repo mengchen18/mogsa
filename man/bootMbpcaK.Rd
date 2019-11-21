@@ -4,10 +4,21 @@
 \alias{bootMbpcaK}
 \title{An internal function called by \code{\link{bootMbpca}}.}
 \usage{
-bootMbpcaK(data, replace, B = 100, mc.cores = 1,
-  resample = c("sample", "total", "gene"), ncomp, method, k,
-  center = FALSE, scale = FALSE, option = "uniform",
-  maxiter = 1000, svd.solver = c("svd", "fast.svd", "propack"))
+bootMbpcaK(
+  data,
+  replace,
+  B = 100,
+  mc.cores = 1,
+  resample = c("sample", "total", "gene"),
+  ncomp,
+  method,
+  k,
+  center = FALSE,
+  scale = FALSE,
+  option = "uniform",
+  maxiter = 1000,
+  svd.solver = c("svd", "fast.svd", "propack")
+)
 }
 \arguments{
 \item{data}{A \code{list} of \code{matrix} to bootstrap.}

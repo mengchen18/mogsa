@@ -4,9 +4,18 @@
 \alias{softSVD}
 \title{penalized SVD}
 \usage{
-softSVD(x, nf = 1, kv = Inf, ku = Inf, wv = 1, wu = 1,
-  pos = FALSE, maxiter = 50, tol = sqrt(.Machine$double.eps),
-  verbose = FALSE)
+softSVD(
+  x,
+  nf = 1,
+  kv = Inf,
+  ku = Inf,
+  wv = 1,
+  wu = 1,
+  pos = FALSE,
+  maxiter = 50,
+  tol = sqrt(.Machine$double.eps),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{x}{the matrix to be decomposed}

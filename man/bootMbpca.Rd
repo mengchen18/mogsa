@@ -4,10 +4,19 @@
 \alias{bootMbpca}
 \title{Bootstrap mbpca to estimate the coherence of different data sets}
 \usage{
-bootMbpca(moa, mc.cores = 1, B = 100, replace = TRUE,
-  resample = c("sample", "gene", "total"), log = "y", ncomp = NULL,
-  method = NULL, maxiter = 1000, svd.solver = c("svd", "fast.svd",
-  "propack"), plot = TRUE)
+bootMbpca(
+  moa,
+  mc.cores = 1,
+  B = 100,
+  replace = TRUE,
+  resample = c("sample", "gene", "total"),
+  log = "y",
+  ncomp = NULL,
+  method = NULL,
+  maxiter = 1000,
+  svd.solver = c("svd", "fast.svd", "propack"),
+  plot = TRUE
+)
 }
 \arguments{
 \item{moa}{An object of \code{\link{moa}} returned by \code{\link{mbpca}}.}

@@ -4,8 +4,14 @@
 \alias{moa}
 \title{Multiple omics data analysis using MFA or STATIS}
 \usage{
-moa(data, proc.row = "center_ssq1", w.data = "inertia", w.row = NULL,
-  statis = FALSE, moa = TRUE)
+moa(
+  data,
+  proc.row = "center_ssq1",
+  w.data = "inertia",
+  w.row = NULL,
+  statis = FALSE,
+  moa = TRUE
+)
 }
 \arguments{
 \item{data}{A list of \code{data.frame} or \code{matrix} that contains the

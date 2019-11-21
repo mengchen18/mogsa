@@ -4,8 +4,17 @@
 \alias{biSoftK}
 \title{NIPALS algorithm with soft thresholding operator on rows and columns}
 \usage{
-biSoftK(x, maxiter, kp, kt, weight.p, weight.t, pos = FALSE,
-  unit.pb = TRUE, unit.tb = FALSE)
+biSoftK(
+  x,
+  maxiter,
+  kp,
+  kt,
+  weight.p,
+  weight.t,
+  pos = FALSE,
+  unit.pb = TRUE,
+  unit.tb = FALSE
+)
 }
 \arguments{
 \item{x}{The input matrix, rows are observations, columns are variables}

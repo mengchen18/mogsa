@@ -121,6 +121,7 @@ decompose.gs.ind <- function(x, gs, obs, type=3, nf=2, plot=TRUE,
 #' @return Do not return anything (plot=TRUE) or return a list of matrix
 #' (plot=FALSE) depends on plot arugment.
 #' @author Chen meng
+#' @export
 #' @examples
 #' 
 #'   # library(mogsa)

@@ -4,8 +4,14 @@
 \alias{svd.solver}
 \title{Singular Value Decomposition of a Matrix}
 \usage{
-svd.solver(x, nf, opts.svd.nipals = list(), opts.svds = list(),
-  opts.fast.svd = list(), opts.svd = list())
+svd.solver(
+  x,
+  nf,
+  opts.svd.nipals = list(),
+  opts.svds = list(),
+  opts.fast.svd = list(),
+  opts.svd = list()
+)
 }
 \arguments{
 \item{x}{a numeric or complex matrix whose SVD decomposition is to be computed.}

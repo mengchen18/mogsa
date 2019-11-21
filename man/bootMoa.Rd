@@ -4,10 +4,20 @@
 \alias{bootMoa}
 \title{Significant components in "moa" returned by function "moa".}
 \usage{
-bootMoa(moa, proc.row = "center_ssq1", w.data = "inertia",
-  w.row = NULL, statis = FALSE, mc.cores = 1, B = 100,
-  replace = TRUE, resample = c("sample", "gene", "total"),
-  plot = TRUE, log = "y", tol = 1e-07)
+bootMoa(
+  moa,
+  proc.row = "center_ssq1",
+  w.data = "inertia",
+  w.row = NULL,
+  statis = FALSE,
+  mc.cores = 1,
+  B = 100,
+  replace = TRUE,
+  resample = c("sample", "gene", "total"),
+  plot = TRUE,
+  log = "y",
+  tol = 1e-07
+)
 }
 \arguments{
 \item{moa}{An object of \code{\link{moa}} returned by \code{\link{moa}}.}

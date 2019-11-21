@@ -4,9 +4,18 @@
 \alias{decompose.gs.group}
 \title{Data-wise or PC-wise decomposition of gene set scores for all observations.}
 \usage{
-decompose.gs.group(x, gs, group, decomp = "data", nf = 2,
-  x.legend = "bottomleft", y.legend = NULL, plot = TRUE,
-  main = NULL, ...)
+decompose.gs.group(
+  x,
+  gs,
+  group,
+  decomp = "data",
+  nf = 2,
+  x.legend = "bottomleft",
+  y.legend = NULL,
+  plot = TRUE,
+  main = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{mgsa-class}} or

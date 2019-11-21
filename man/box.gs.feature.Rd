@@ -4,8 +4,16 @@
 \alias{box.gs.feature}
 \title{boxplot of gene set variables across all samples.}
 \usage{
-box.gs.feature(x, gs, moa = NULL, col = 1, layout = NULL,
-  plot = TRUE, obs.order = NULL, ...)
+box.gs.feature(
+  x,
+  gs,
+  moa = NULL,
+  col = 1,
+  layout = NULL,
+  plot = TRUE,
+  obs.order = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of calss \code{\link{mgsa-class}} or

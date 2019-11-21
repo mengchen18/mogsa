@@ -4,8 +4,17 @@
 \alias{GIS}
 \title{calculate gene influential scores of genes in a gene set.}
 \usage{
-GIS(x, geneSet, nf = NA, barcol = NA, topN = NA, plot = TRUE,
-  Fvalue = FALSE, ff = NA, cor = FALSE)
+GIS(
+  x,
+  geneSet,
+  nf = NA,
+  barcol = NA,
+  topN = NA,
+  plot = TRUE,
+  Fvalue = FALSE,
+  ff = NA,
+  cor = FALSE
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{mgsa-class}}.}

@@ -5,8 +5,17 @@
 \title{Data-wise or PC-wise decomposition of gene set scores for a single
 observation.}
 \usage{
-decompose.gs.ind(x, gs, obs, type = 3, nf = 2, plot = TRUE,
-  col.data = NULL, col.pc = NULL, legend = TRUE)
+decompose.gs.ind(
+  x,
+  gs,
+  obs,
+  type = 3,
+  nf = 2,
+  plot = TRUE,
+  col.data = NULL,
+  col.pc = NULL,
+  legend = TRUE
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{mgsa-class}} or

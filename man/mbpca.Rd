@@ -4,10 +4,24 @@
 \alias{mbpca}
 \title{Extension of PCA to analyze multiple data sets}
 \usage{
-mbpca(x, ncomp, method, k = "all", center = TRUE, scale = FALSE,
-  option = "uniform", maxiter = 1000, moa = TRUE, verbose = TRUE,
-  k.obs = "all", w = NA, w.obs = NA, unit.p = FALSE,
-  unit.obs = FALSE, pos = FALSE)
+mbpca(
+  x,
+  ncomp,
+  method,
+  k = "all",
+  center = TRUE,
+  scale = FALSE,
+  option = "uniform",
+  maxiter = 1000,
+  moa = TRUE,
+  verbose = TRUE,
+  k.obs = "all",
+  w = NA,
+  w.obs = NA,
+  unit.p = FALSE,
+  unit.obs = FALSE,
+  pos = FALSE
+)
 }
 \arguments{
 \item{x}{A \code{list} of \code{matrix} or \code{data.frame}, where rows are

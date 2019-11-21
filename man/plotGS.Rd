@@ -4,9 +4,19 @@
 \alias{plotGS}
 \title{Plot the gene set space}
 \usage{
-plotGS(x, axes = 1:2, center.only = FALSE, topN = 1, data.pch = 20,
-  data.col = 1, highlight.col = 2, label = NULL, label.cex = 1,
-  layout = NULL, ...)
+plotGS(
+  x,
+  axes = 1:2,
+  center.only = FALSE,
+  topN = 1,
+  data.pch = 20,
+  data.col = 1,
+  highlight.col = 2,
+  label = NULL,
+  label.cex = 1,
+  layout = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{mgsa-class}} or

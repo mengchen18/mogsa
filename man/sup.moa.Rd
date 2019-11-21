@@ -4,8 +4,16 @@
 \alias{sup.moa}
 \title{Projecting supplementary tables on object of class \code{moa-class}.}
 \usage{
-sup.moa(X, sup, nf = 2, factors = NULL, ks.stat = FALSE,
-  ks.B = 1000, ks.cores = NULL, p.adjust.method = "fdr")
+sup.moa(
+  X,
+  sup,
+  nf = 2,
+  factors = NULL,
+  ks.stat = FALSE,
+  ks.B = 1000,
+  ks.cores = NULL,
+  p.adjust.method = "fdr"
+)
 }
 \arguments{
 \item{X}{An object of class \code{\link{moa-class}}}

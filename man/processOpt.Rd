@@ -4,8 +4,12 @@
 \alias{processOpt}
 \title{preprocessing of input data in \code{\link{mbpca}}.}
 \usage{
-processOpt(x, center = TRUE, scale = FALSE, option = c("lambda1",
-  "inertia", "uniform"))
+processOpt(
+  x,
+  center = TRUE,
+  scale = FALSE,
+  option = c("lambda1", "inertia", "uniform")
+)
 }
 \arguments{
 \item{x}{A list of matrices, rows are observations and columns are variables}

@@ -4,12 +4,23 @@
 \alias{moGap}
 \title{Gap statistic for clustering latent variables in \code{\link{moa-class}}.}
 \usage{
-moGap(x, K.max, B = 100, cluster = c("kmeans", "hclust"),
-  plot = TRUE, dist.method = "euclidean", dist.diag = FALSE,
-  dist.upper = FALSE, dist.p = 2, hcl.method = "complete",
-  hcl.members = NULL, km.iter.max = 10, km.nstart = 10,
+moGap(
+  x,
+  K.max,
+  B = 100,
+  cluster = c("kmeans", "hclust"),
+  plot = TRUE,
+  dist.method = "euclidean",
+  dist.diag = FALSE,
+  dist.upper = FALSE,
+  dist.p = 2,
+  hcl.method = "complete",
+  hcl.members = NULL,
+  km.iter.max = 10,
+  km.nstart = 10,
   km.algorithm = c("Hartigan-Wong", "Lloyd", "Forgy", "MacQueen"),
-  km.trace = FALSE)
+  km.trace = FALSE
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{moa-class}} returned by
