@@ -5,13 +5,10 @@
 \title{SVD based algorithm to calculate block Score and global scores for
 \code{\link{mbpca}}.}
 \usage{
-msvd(x, svd.sol = svd.solver)
+msvd(x)
 }
 \arguments{
 \item{x}{The input matrix, rows are observations, columns are variables}
-
-\item{svd.sol}{A function object to specify the preferred SVD solver,
-default is \code{svd}.}
 }
 \value{
 an \code{list} object contains the following elements:

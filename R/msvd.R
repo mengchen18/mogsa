@@ -7,8 +7,6 @@
 #' 
 #' 
 #' @param x The input matrix, rows are observations, columns are variables
-#' @param svd.sol A function object to specify the preferred SVD solver,
-#' default is \code{svd}.
 #' @return an \code{list} object contains the following elements:
 #' 
 #' \code{tb} - the block scores
@@ -22,7 +20,7 @@
 #' @export
 #' @seealso \code{\link{nipalsSoftK}}
 msvd <-
-function(x, svd.sol=svd.solver) {
+function(x) {
   nd <- length(x)
   nVar <- sapply(x, ncol)
   if (!is.null(names(x)))
@@ -31,14 +29,20 @@ function(x, svd.sol=svd.solver) {
   nm <- lapply(x, colnames)
   
   tab <- do.call("cbind", x)
+  isMatrix <- inherits(tab, "Matrix")
   
-  dc <- svd.sol(tab)
+  dc <- svd.solver(tab, nf = 1)
   
   res <- list()
-  res$t <- dc$u[, 1, drop=FALSE] * dc$d[1]
-  pb <- split(dc$v[, 1, drop=FALSE], idx)
+  res$t <- dc$u * dc$d
+  pb <- split(dc$v, idx)
   for (i in names(x)) names(pb[[i]]) <- colnames(x[[i]]) 
-  res$pb <- lapply(pb, function(x) as.matrix(x/sqrt(sum(x^2))))
+  res$pb <- lapply(pb, function(x) {
+    if (isMatrix) {
+      Matrix(x/sqrt(sum(x^2)))
+      } else
+      as.matrix(x/sqrt(sum(x^2)))
+    })
   
   res$tb <- mapply(SIMPLIFY = FALSE, function(m, v) {
     m %*% v

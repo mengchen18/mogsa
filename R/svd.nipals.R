@@ -121,8 +121,16 @@ svd.solver <- function(
     solver <- "svd"
     # cat("svd used. \n" )
   }
+  if (inherits(x, "Matrix")) {
+    r$u <- Matrix(r$u)
+    r$v <- Matrix(r$v)
+  }  
   attr(r, "solver") <- solver
   r
 }
 
-
+c <- function(x, ...) {
+  if (inherits(x, "Matrix"))
+    as.numeric(x) else
+      base::c(x, ...)
+}

@@ -23,7 +23,12 @@ function(x, center=TRUE, scale=FALSE, option = c("lambda1", "inertia", "uniform"
   if (is.null(names(x)))
     names(x) <- paste("data", 1:length(x), sep = "_")
 
-  x <- lapply(x, scale, center, scale)
+  x <- lapply(x, function(x) {
+    r <- scale(x, center = center, scale = scale)
+    if (inherits(x, "Matrix"))
+      r <- Matrix(r)
+    r
+    })
   if (opt == "lambda1") {
     w <- sapply(x, function(xx) 1/svd.solver(xx, nf = 1)$d)
   } else if (opt == "inertia") {

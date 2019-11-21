@@ -40,6 +40,8 @@ function(x, maxiter, k) {
     told <- t
     rp <- mapply(SIMPLIFY = FALSE, function(x, y) regproj(x, t, y), x=x, y=k)
     tm <- sapply(rp, "[[", "tb")
+    if (is.list(tm))
+      tm <- do.call(cbind, tm)
     w <- t(tm) %*% t / c(t(t) %*% t)
     w <- w/sqrt(sum(w^2))
     #  w <- w/sum(w)
@@ -57,3 +59,5 @@ function(x, maxiter, k) {
   
   return(res)
 }
+
+

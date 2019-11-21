@@ -109,7 +109,6 @@ biSoftK <- function (x, maxiter, kp, kt, weight.p, weight.t, pos = FALSE, unit.p
     list(tb = tb, pb = pb)
   }
   
-  # t <- fast.svd(do.call("cbind", x))$u[, 1, drop = FALSE]
   t <- svd.solver(do.call("cbind", x), nf = 1)$u
   for (i in 1:maxiter) { 
     told <- t
@@ -118,6 +117,8 @@ biSoftK <- function (x, maxiter, kp, kt, weight.p, weight.t, pos = FALSE, unit.p
     }, x = x, kp = kp, kt = kt, wp = weight.p, wt = weight.t, pos = pos, upb = unit.pb, utb = unit.tb)
     
     tm <- sapply(rp, "[[", "tb")
+    if (is.list(tm))
+      tm <- do.call(cbind, tm)
     w <- t(tm) %*% t/c(t(t) %*% t)
     w <- w/sqrt(sum(w^2))
     t <- tm %*% w
