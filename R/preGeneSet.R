@@ -123,7 +123,7 @@ prepGraphite <- function(db, id = c("entrez", "symbol")) {
 #'   library(graphite)
 #'   data(NCI60_4arrays)
 #'   kegg <- pathways(species = "hsapiens", "kegg")
-#'   pw <- c("Purine metabolism", "Endocrine resistance", "MAPK signaling pathway")
+#'   pw <- c("Purine metabolism", "p53 signaling pathway", "MAPK signaling pathway")
 #'   gss <- prepGraphite(db = kegg[pw], id="symbol")
 #'   gss <- lapply(gss, function(x) sub("SYMBOL:", "", x))
 #'   sup_data1 <- prepSupMoa(NCI60_4arrays, geneSets=gss)

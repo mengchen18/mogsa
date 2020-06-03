@@ -72,7 +72,7 @@ convenient function to calculate the gap statistic of clustering "moa".
 }
 \examples{
 
-# see examples in \\code{\\link{mbpca}}
+# see examples in \code{\link{mbpca}}
 
 
 data("NCI60_4arrays")

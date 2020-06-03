@@ -37,7 +37,7 @@ Extract the loadings/coefficients from an object of class
 }
 \examples{
 
-# see examples in \\code{\\link{mbpca}}
+# see examples in \code{\link{mbpca}}
 
 data("NCI60_4arrays")
 moa <- mbpca(NCI60_4arrays, ncomp = 10, k = "all", method = "globalScore", option = "lambda1", 
