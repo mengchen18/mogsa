@@ -66,7 +66,7 @@ significant concordant structure between datasets.
 }
 \examples{
 
-# see examples in \\code{\\link{mbpca}}
+# see examples in \code{\link{mbpca}}
 
 }
 \author{

@@ -17,5 +17,5 @@ Suggests: BiocStyle, knitr, org.Hs.eg.db
 biocViews: GeneExpression, PrincipalComponent, StatisticalMethod, Clustering,
         Software
 NeedsCompilation: no
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.0
 Encoding: UTF-8

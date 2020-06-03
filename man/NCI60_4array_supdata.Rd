@@ -5,7 +5,8 @@
 \alias{NCI60_4array_supdata}
 \title{supp data for Microarray gene expression profiles of the NCI 60 cell lines
 from 4 different platforms}
-\format{The format is: List of 4 \code{matrix} \itemize{
+\format{
+The format is: List of 4 \code{matrix} \itemize{
 \item\$agilent:\code{matrix} containing 300 rows and 60 columns.  300 gene
 expression log ratio measurements of the NCI60 cell lines, by Agilent
 platform.
@@ -20,7 +21,8 @@ expression log ratio measurements of the NCI60 cell lines, by H-GU133 plus
 
 \item\$hgu95:\code{matrix} containing 288 rows and 60 columns.  288 gene
 expression log ratio measurements of the NCI60 cell lines, by H-GU95
-platform.  }}
+platform.  }
+}
 \value{
 \code{NCI60_4array_supdata} will be loaded in your working space.
 }

@@ -5,7 +5,8 @@
 \alias{NCI60_4arrays}
 \title{Microarray gene expression profiles of the NCI 60 cell lines from 4
 different platforms}
-\format{The format is: List of 4 \code{data.frame}s \itemize{
+\format{
+The format is: List of 4 \code{data.frame}s \itemize{
 \item\$agilent:\code{data.frame} containing 300 rows and 60 columns.  300
 gene expression log ratio measurements of the NCI60 cell lines, by Agilent
 platform.
@@ -20,7 +21,8 @@ plus 2.0 platform.
 
 \item\$hgu95:\code{data.frame} containing 288 rows and 60 columns.  288 gene
 expression log ratio measurements of the NCI60 cell lines, by H-GU95
-platform.  }}
+platform.  }
+}
 \source{
 Cell Miner \url{http://discover.nci.nih.gov/cellminer/}
 }
